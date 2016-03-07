@@ -48,8 +48,16 @@ public class RestaurantTest {
   public void update_updatesRestaurantInDB() {
     Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
     newRestaurant.save();
-    newRestaurant.update("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "MN", "04401", 4);
-    assertTrue(Restaurant.all().get().equals("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "MN", "04401", 4));
+    newRestaurant.update("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "ME", "04401", 4);
+
+    assertTrue(Restaurant.all().get(0).getRestaurantName().equals("Marginal Hotcake House"));
+    assertTrue(Restaurant.all().get(0).getPhone().equals("555-6789"));
+    assertTrue(Restaurant.all().get(0).getStreet().equals("4534 NW Main St."));
+    assertTrue(Restaurant.all().get(0).getCity().equals("Bangor"));
+    assertTrue(Restaurant.all().get(0).getState().equals("ME"));
+    assertTrue(Restaurant.all().get(0).getZip().equals("04401"));
+    assertEquals(Restaurant.all().get(0).getLineAverage(), (4));
+
 
   }
 
