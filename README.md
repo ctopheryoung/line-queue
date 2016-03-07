@@ -1,27 +1,12 @@
-# Java/Spark/Velocity File Structure Template
+# Q.
 
-#### Date
+#### March, 2016
 
-#### By Names
+#### By Chris Young, Trevor Elvey, Vigilio Ramon de la Cruz & Riley Starnes
 
 ## Description
 
-This is a template file structure for use in Epicodus Java/Spark/Velocity projects.
-
-[Here is a helpful list of Spark routes.] (https://dl.dropboxusercontent.com/s/gle8iwtk2ed9tg6/Screenshot%202015-07-23%2011.18.30.png)
-
-## How To Use
-
-* Make a directory for your project and initialize a git repository.
-* Pull this file structure template from GitHub
-
-OR:
-
-* Fork this repository from GitHub and rename it
-
-## Please Make This Better
-
-Please fork this repository and send a pull request if something in here could be better.
+A Java app that provides a database of restaurants with the ability to report a line length or check the length of a line to get into a restaurant. 
 
 ## Technologies Used
 
