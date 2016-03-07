@@ -35,6 +35,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/users/:id/edit", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      User user = User.find(id);
+      model.put("user", user);
+      model.put("template", "templates/user-edit.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
     //RESTAURANTS ROUTES
     get("/restaurants", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
@@ -50,6 +60,15 @@ public class App {
       Restaurant restaurant = Restaurant.find(id);
       model.put("restaurant", restaurant);
       model.put("template", "templates/restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/restaurants/:id/edit", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Restaurant restaurant = Restaurant.find(id);
+      model.put("restaurant", restaurant);
+      model.put("template", "templates/restaurant-edit.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }
