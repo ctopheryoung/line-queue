@@ -113,4 +113,20 @@ public class Restaurant {
 
 //UPDATE
 
+  public void update(String restaurant_name, String phone, String street, String city, String state, String zip, int line_average) {
+    String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, phone = :phone, street = :street, city = :city, state = :state, zip = :zip, line_average = :line_average WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("restaurant_name", restaurant_name)
+      .addParameter("phone", phone)
+      .addParameter("street", street)
+      .addParameter("city", city)
+      .addParameter("state", state)
+      .addParameter("zip", zip)
+      .addParameter("line_average", line_average)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
 }
