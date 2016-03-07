@@ -99,5 +99,18 @@ public class Restaurant {
     }
   }
 
+//READ
+
+  public static Restaurant find(int id) {
+    String sql = "SELECT id, restaurant_name, phone, street, city, state, zip, line_average FROM restaurants WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      Restaurant restaurants = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Restaurant.class);
+      return restaurants;
+    }
+  }
+
+//UPDATE
 
 }

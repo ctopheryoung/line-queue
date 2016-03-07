@@ -28,4 +28,21 @@ public class RestaurantTest {
     assertTrue(newRestaurant.equals(savedRestaurant));
   }
 
+  @Test
+  public void save_assignsIDToObject() {
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    newRestaurant.save();
+    Restaurant savedRestaurant = Restaurant.all().get(0);
+    assertEquals(newRestaurant.getId(), savedRestaurant.getId());
+  }
+
+  @Test
+  public void find_locatesAllRestaurantsInDB() {
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    newRestaurant.save();
+    Restaurant savedRestaurant = Restaurant.find(newRestaurant.getId());
+    assertTrue(newRestaurant.equals(savedRestaurant));
+  }
+
+
 }
