@@ -35,9 +35,9 @@ SET default_with_oids = false;
 
 CREATE TABLE restaurants (
     id integer NOT NULL,
-    name character varying,
     line integer,
-    user_id integer
+    user_id integer,
+    restaurant_name character varying
 );
 
 
@@ -116,7 +116,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: restaurants; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY restaurants (id, name, line, user_id) FROM stdin;
+COPY restaurants (id, line, user_id, restaurant_name) FROM stdin;
 \.
 
 
