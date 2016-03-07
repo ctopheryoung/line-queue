@@ -70,8 +70,8 @@ ALTER SEQUENCE restaurants_id_seq OWNED BY restaurants.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    name character varying,
-    restaurant_id integer
+    restaurant_id integer,
+    user_name character varying
 );
 
 
@@ -131,7 +131,7 @@ SELECT pg_catalog.setval('restaurants_id_seq', 1, false);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY users (id, name, restaurant_id) FROM stdin;
+COPY users (id, restaurant_id, user_name) FROM stdin;
 \.
 
 
