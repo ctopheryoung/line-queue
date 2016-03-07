@@ -148,4 +148,28 @@ public class Restaurant {
     }
   }
 
+  public void addUser(User user) {
+      String sql = "INSERT INTO check-ins (restaurant_id, user_id, check_in, in_line) VALUES (:restaurant_id, :user_id, :check_in, :in_line)";
+      try(Connection con =DB.sql2o.open()) {
+        con.createQuery(sql)
+          .addParameter("restaurant_id", this.getId)
+          .addParameter("user_id", user.getId)
+          .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
+          .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
+          .executeUpdate();
+      }
+  }
+
+  public void getUsers() {
+    String sql = "SELECT users.* FROM restaurants " +
+                 "JOIN check_ins ON (restaurants.id = check_ins.restaurant_id) " +
+                 "JOIN users ON (check-ins.user_id = users.id) " +
+                 "WHERE restaurants.id = :id";
+
+                 List<User> users = con.createQuery(sql)
+                            .addParameter("id", id)
+                            .executeAndFetch(User.class);
+                            return users;
+  }
+
 }

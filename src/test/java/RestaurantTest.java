@@ -75,7 +75,32 @@ public class RestaurantTest {
     secondRestaurant.save();
     secondRestaurant.deleteAll();
     assertEquals(Restaurant.all().size(), 0);
+  }
 
+  @Test
+  public void addUser_addsUserToRestaurant() {
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    newRestaurant.save();
+
+    User newUser = new User("Stan", 53);
+    newUser.save();
+
+    newRestaurant.addUser(newUser);
+    User savedUser = newRestaurant.getUsers().get(0);
+    assertTrue(newUser.equals(savedUser));
+  }
+
+  @Test
+  public void getUsers_getsAllUsersAssociatedWithOneRestaurant() {
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    newRestaurant.save();
+
+    User newUser = new User("Stan", 53);
+    newUser.save();
+
+    newRestaurant.addUser(newUser);
+    List savedUsers = newRestaurant.getUsers();
+    assertEquals(savedUsers.size(), 1);
   }
 
 }
