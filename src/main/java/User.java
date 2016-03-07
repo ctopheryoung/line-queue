@@ -62,14 +62,14 @@ public class User {
     }
   }
 
-  // public List<Restaurant> getRestaurants() {
-  //   String sql = "SELECT restaurants.* FROM users JOIN check_ins ON (users.id = check_ins.user_id) JOIN restaurants ON (check_ins.restaurant_id = restaurants.id) WHERE users.id = :user_id";
-  //   try(Connection con = DB.sql2o.open()) {
-  //     return con.createQuery(sql)
-  //     .addParameter("user_id", id)
-  //     .executeAndFetch(Restaurant.class);
-  //   }
-  // }
+  public List<Restaurant> getRestaurants() {
+    String sql = "SELECT restaurants.* FROM users JOIN check_ins ON (users.id = check_ins.user_id) JOIN restaurants ON (check_ins.restaurant_id = restaurants.id) WHERE users.id = :user_id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("user_id", id)
+      .executeAndFetch(Restaurant.class);
+    }
+  }
 
   //UPDATE//
   public void update(String newVenueName) {
@@ -83,26 +83,26 @@ public class User {
     }
   }
 
-  // public void addRestaurant(Restaurant restaurant) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
-  //     con.createQuery(sql)
-  //     .addParameter("restaurant_id", restaurant.getId())
-  //     .addParameter("user_id", this.getId())
-  //     .executeUpdate();
-  //   }
-  // }
+  public void addRestaurant(Restaurant restaurant) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
+      con.createQuery(sql)
+      .addParameter("restaurant_id", restaurant.getId())
+      .addParameter("user_id", this.getId())
+      .executeUpdate();
+    }
+  }
 
-  // public void assignRestaurant(int restaurant_id) {
-  //   restaurant_id = restaurant_id;
-  //   String sql = "UPDATE check_ins SET restaurant_id = :restaurant_id WHERE user_id=:user_id";
-  //   try(Connection con = DB.sql2o.open()) {
-  //     con.createQuery(sql)
-  //        .addParameter("restaurant_id", restaurant_id)
-  //        .addParameter("id", this.id)
-  //        .executeUpdate();
-  //   }
-  // }
+  public void assignRestaurant(int restaurant_id) {
+    restaurant_id = restaurant_id;
+    String sql = "UPDATE check_ins SET restaurant_id = :restaurant_id WHERE user_id=:user_id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+         .addParameter("restaurant_id", restaurant_id)
+         .addParameter("id", this.id)
+         .executeUpdate();
+    }
+  }
 
   //DESTROY//
   public void delete() {
