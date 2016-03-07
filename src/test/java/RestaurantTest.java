@@ -57,7 +57,24 @@ public class RestaurantTest {
     assertTrue(Restaurant.all().get(0).getState().equals("ME"));
     assertTrue(Restaurant.all().get(0).getZip().equals("04401"));
     assertEquals(Restaurant.all().get(0).getLineAverage(), (4));
+  }
 
+  @Test
+  public void delete_deletesRestaurantFromDB() {
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    newRestaurant.save();
+    newRestaurant.delete();
+    assertEquals(Restaurant.all().size(), 0);
+  }
+
+  @Test
+  public void deleteAll_deletesAllRestaurantsFromDB() {
+    Restaurant firstRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    firstRestaurant.save();
+    Restaurant secondRestaurant = new Restaurant("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "ME", "04401", 4);
+    secondRestaurant.save();
+    secondRestaurant.deleteAll();
+    assertEquals(Restaurant.all().size(), 0);
 
   }
 

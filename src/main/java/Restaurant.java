@@ -129,4 +129,23 @@ public class Restaurant {
     }
   }
 
+//DESTROY
+
+  public void delete() {
+    String sql = "DELETE FROM restaurants WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void deleteAll() {
+    String deleteQuery = "DELETE FROM restaurants";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(deleteQuery)
+      .executeUpdate();
+    }
+  }
+
 }
