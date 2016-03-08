@@ -147,17 +147,17 @@ public class Restaurant {
     }
   }
 
-  // public void addUser(User user) {
-  //     String sql = "INSERT INTO check_ins (restaurant_id, user_id, check_in, in_line) VALUES (:restaurant_id, :user_id, :check_in, :in_line)";
-  //     try(Connection con = DB.sql2o.open()) {
-  //       con.createQuery(sql)
-  //         .addParameter("restaurant_id", id)
-  //         .addParameter("user_id", user.getId())
-  //         .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
-  //         .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
-  //         .executeUpdate();
-  //     }
-  // }
+  public void addUser(User user) {
+      String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
+      try(Connection con = DB.sql2o.open()) {
+        con.createQuery(sql)
+          .addParameter("restaurant_id", id)
+          .addParameter("user_id", user.getId())
+          // .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
+          // .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
+          .executeUpdate();
+      }
+  }
 
   public List<User> getUsers() {
     String sql = "SELECT users.* FROM restaurants " +
