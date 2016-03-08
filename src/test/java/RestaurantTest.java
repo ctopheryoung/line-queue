@@ -77,18 +77,18 @@ public class RestaurantTest {
     assertEquals(Restaurant.all().size(), 0);
   }
 
-  @Test
-  public void addUser_addsUserToRestaurant() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
-    newRestaurant.save();
-
-    User newUser = new User("Stan");
-    newUser.save();
-
-    newRestaurant.addUser(newUser);
-    User savedUser = newRestaurant.getUsers().get(0);
-    assertTrue(newUser.equals(savedUser));
-  }
+  // @Test
+  // public void addUser_addsUserToRestaurant() {
+  //   Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
+  //   newRestaurant.save();
+  //
+  //   User newUser = new User("Stan");
+  //   newUser.save();
+  //
+  //   newRestaurant.addUser(newUser);
+  //   User savedUser = newRestaurant.getUsers().get(0);
+  //   assertTrue(newUser.equals(savedUser));
+  // }
 
   // @Test
   // public void getUsers_getsAllUsersAssociatedWithOneRestaurant() {

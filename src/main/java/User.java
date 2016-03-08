@@ -10,7 +10,7 @@ public class User {
   private int score = 0;
 
   //CONSTRUCTOR//
-  public User(String user_name) {
+  public User(String user_name, String password, String permission) {
     this.user_name = user_name;
     this.password = password;
     this.permission = permission;

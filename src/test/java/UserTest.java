@@ -17,7 +17,7 @@ public class UserTest {
 
   @Test
   public void equals_returnsTrueIfNamesAreTheSame() {
-    User firstUser = new User("Bill", "password", "permission", "password", "permission");
+    User firstUser = new User("Bill", "password", "permission");
     User secondUser = new User("Bill", "password", "permission");
     assertTrue(firstUser.equals(secondUser));
   }
