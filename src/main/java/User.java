@@ -5,11 +5,15 @@ import org.sql2o.*;
 public class User {
   private int id;
   private String user_name;
+  private String password;
+  private String permission;
   private int score = 0;
 
   //CONSTRUCTOR//
   public User(String user_name) {
     this.user_name = user_name;
+    this.password = password;
+    this.permission = permission;
   }
 
   //GETTERS//
@@ -19,6 +23,14 @@ public class User {
 
   public int getId() {
     return id;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public String getPermission() {
+    return permission;
   }
 
   @Override
@@ -34,9 +46,11 @@ public class User {
   //CREATE//
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO users(user_name) VALUES (:user_name)";
+      String sql = "INSERT INTO users(user_name, password, permission) VALUES (:user_name, :password, :permission)";
       this.id = (int) con.createQuery(sql,true)
       .addParameter("user_name", this.user_name)
+      .addParameter("password", this.password)
+      addParameter("permission", this.permission)
       .executeUpdate()
       .getKey();
     }
