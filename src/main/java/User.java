@@ -75,6 +75,16 @@ public class User {
     }
   }
 
+  public static User login(String user_name) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM Users where user_name=:user_name";
+      Login login = con.createQuery(sql)
+      .addParameter("user_name", user_name)
+      .executeAndFetchFirst(User.class);
+      return login;
+    }
+  }
+
   public List<Restaurant> getRestaurants() {
     String sql = "SELECT restaurants.* FROM users JOIN check_ins ON (users.id = check_ins.user_id) JOIN restaurants ON (check_ins.restaurant_id = restaurants.id) WHERE users.id = :user_id";
     try(Connection con = DB.sql2o.open()) {
