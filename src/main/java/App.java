@@ -62,6 +62,15 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("users/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      User user = User.find(id);
+      String name = request.queryParams("name");
+      user.update(name);
+      response.redirect("/bands/" + id);
+      return null;
+    });
 
     //RESTAURANTS ROUTES
     get("/restaurants", (request, response) -> {
