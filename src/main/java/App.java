@@ -33,11 +33,22 @@ public class App {
       return null;
     });
 
+    post("/add_restaurant", (request, response) -> {
+      int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
+      int userId = Integer.parseInt(request.queryParams("user_id"));
+      Restaurant restaurant = Restaurant.find(restaurantId);
+      User user = User.find(userId);
+      user.addRestaurant(restaurant);
+      response.redirect("/users/" + userId);
+      return null;
+    });
+
     get("/users/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       User user = User.find(id);
       model.put("user", user);
+      model.put("allRestaurants", Restaurant.all());
       model.put("template", "templates/user.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
