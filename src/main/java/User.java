@@ -72,12 +72,12 @@ public class User {
   }
 
   //UPDATE//
-  public void update(String newVenueName) {
-    this.user_name = newVenueName;
-    String sql = "UPDATE users SET user_name = :newVenueName WHERE id=:id";
+  public void update(String newUserName) {
+    this.user_name = newUserName;
+    String sql = "UPDATE users SET user_name = :newUserName WHERE id=:id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("newVenueName", newVenueName)
+      .addParameter("newUserName", newUserName)
       .addParameter("id", this.id)
       .executeUpdate();
     }
