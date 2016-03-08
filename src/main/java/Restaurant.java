@@ -9,7 +9,7 @@ public class Restaurant {
   private String city;
   private String state;
   private String zip;
-  private int line_average;
+  private int line_average = 5;
   //********ADD NEW CATS HERE**************
 
   public int getId() {
@@ -46,14 +46,13 @@ public class Restaurant {
 
   //********ADD NEW GETS HERE**************
 
-  public Restaurant(String restaurant_name, String phone, String street, String city, String state, String zip, int line_average) {
+  public Restaurant(String restaurant_name, String phone, String street, String city, String state, String zip) {
     this.restaurant_name = restaurant_name;
     this.phone = phone;
     this.street = street;
     this.city = city;
     this.state = state;
     this.zip = zip;
-    this.line_average = line_average;
       //********ADD NEW CATS HERE**************
   }
 
@@ -105,8 +104,8 @@ public class Restaurant {
     String sql = "SELECT id, restaurant_name, phone, street, city, state, zip, line_average FROM restaurants WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       Restaurant restaurants = con.createQuery(sql)
-      .addParameter("id", id)
-      .executeAndFetchFirst(Restaurant.class);
+        .addParameter("id", id)
+        .executeAndFetchFirst(Restaurant.class);
       return restaurants;
     }
   }
@@ -117,15 +116,15 @@ public class Restaurant {
     String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, phone = :phone, street = :street, city = :city, state = :state, zip = :zip, line_average = :line_average WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("restaurant_name", restaurant_name)
-      .addParameter("phone", phone)
-      .addParameter("street", street)
-      .addParameter("city", city)
-      .addParameter("state", state)
-      .addParameter("zip", zip)
-      .addParameter("line_average", line_average)
-      .addParameter("id", id)
-      .executeUpdate();
+        .addParameter("restaurant_name", restaurant_name)
+        .addParameter("phone", phone)
+        .addParameter("street", street)
+        .addParameter("city", city)
+        .addParameter("state", state)
+        .addParameter("zip", zip)
+        .addParameter("line_average", line_average)
+        .addParameter("id", id)
+        .executeUpdate();
     }
   }
 
@@ -135,8 +134,8 @@ public class Restaurant {
     String sql = "DELETE FROM restaurants WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("id", id)
-      .executeUpdate();
+        .addParameter("id", id)
+        .executeUpdate();
     }
   }
 
@@ -144,32 +143,32 @@ public class Restaurant {
     String deleteQuery = "DELETE FROM restaurants";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(deleteQuery)
-      .executeUpdate();
+        .executeUpdate();
     }
   }
 
-  public void addUser(User user) {
-      String sql = "INSERT INTO check-ins (restaurant_id, user_id, check_in, in_line) VALUES (:restaurant_id, :user_id, :check_in, :in_line)";
-      try(Connection con =DB.sql2o.open()) {
-        con.createQuery(sql)
-          .addParameter("restaurant_id", this.getId)
-          .addParameter("user_id", user.getId)
-          .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
-          .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
-          .executeUpdate();
-      }
-  }
+  // public void addUser(User user) {
+  //     String sql = "INSERT INTO check_ins (restaurant_id, user_id, check_in, in_line) VALUES (:restaurant_id, :user_id, :check_in, :in_line)";
+  //     try(Connection con = DB.sql2o.open()) {
+  //       con.createQuery(sql)
+  //         .addParameter("restaurant_id", id)
+  //         .addParameter("user_id", user.getId())
+  //         .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
+  //         .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
+  //         .executeUpdate();
+  //     }
+  // }
 
-  public void getUsers() {
+  public List<User> getUsers() {
     String sql = "SELECT users.* FROM restaurants " +
                  "JOIN check_ins ON (restaurants.id = check_ins.restaurant_id) " +
-                 "JOIN users ON (check-ins.user_id = users.id) " +
+                 "JOIN users ON (check_ins.user_id = users.id) " +
                  "WHERE restaurants.id = :id";
-
-                 List<User> users = con.createQuery(sql)
-                            .addParameter("id", id)
-                            .executeAndFetch(User.class);
-                            return users;
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetch(User.class);
+    }
   }
 
 }

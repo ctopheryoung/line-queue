@@ -14,15 +14,15 @@ public class RestaurantTest {
 
   @Test
   public void equals_returnsTrueifRestaurantsAreSame() {
-    Restaurant firstRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
-    Restaurant secondRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant firstRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
+    Restaurant secondRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     assertTrue(firstRestaurant.equals(secondRestaurant));
 
   }
 
   @Test
   public void save_restaurantToObject() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     newRestaurant.save();
     Restaurant savedRestaurant = Restaurant.all().get(0);
     assertTrue(newRestaurant.equals(savedRestaurant));
@@ -30,7 +30,7 @@ public class RestaurantTest {
 
   @Test
   public void save_assignsIDToObject() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     newRestaurant.save();
     Restaurant savedRestaurant = Restaurant.all().get(0);
     assertEquals(newRestaurant.getId(), savedRestaurant.getId());
@@ -38,7 +38,7 @@ public class RestaurantTest {
 
   @Test
   public void find_locatesAllRestaurantsInDB() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     newRestaurant.save();
     Restaurant savedRestaurant = Restaurant.find(newRestaurant.getId());
     assertTrue(newRestaurant.equals(savedRestaurant));
@@ -46,7 +46,7 @@ public class RestaurantTest {
 
   @Test
   public void update_updatesRestaurantInDB() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     newRestaurant.save();
     newRestaurant.update("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "ME", "04401", 4);
 
@@ -61,7 +61,7 @@ public class RestaurantTest {
 
   @Test
   public void delete_deletesRestaurantFromDB() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     newRestaurant.save();
     newRestaurant.delete();
     assertEquals(Restaurant.all().size(), 0);
@@ -69,38 +69,38 @@ public class RestaurantTest {
 
   @Test
   public void deleteAll_deletesAllRestaurantsFromDB() {
-    Restaurant firstRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
+    Restaurant firstRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
     firstRestaurant.save();
-    Restaurant secondRestaurant = new Restaurant("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "ME", "04401", 4);
+    Restaurant secondRestaurant = new Restaurant("Marginal Hotcake House", "555-6789", "4534 NW Main St.", "Bangor", "ME", "04401");
     secondRestaurant.save();
     secondRestaurant.deleteAll();
     assertEquals(Restaurant.all().size(), 0);
   }
 
-  @Test
-  public void addUser_addsUserToRestaurant() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
-    newRestaurant.save();
+  // @Test
+  // public void addUser_addsUserToRestaurant() {
+  //   Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
+  //   newRestaurant.save();
+  //
+  //   User newUser = new User("Stan");
+  //   newUser.save();
+  //
+  //   newRestaurant.addUser(newUser);
+  //   User savedUser = newRestaurant.getUsers().get(0);
+  //   assertTrue(newUser.equals(savedUser));
+  // }
 
-    User newUser = new User("Stan", 53);
-    newUser.save();
-
-    newRestaurant.addUser(newUser);
-    User savedUser = newRestaurant.getUsers().get(0);
-    assertTrue(newUser.equals(savedUser));
-  }
-
-  @Test
-  public void getUsers_getsAllUsersAssociatedWithOneRestaurant() {
-    Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202", 3);
-    newRestaurant.save();
-
-    User newUser = new User("Stan", 53);
-    newUser.save();
-
-    newRestaurant.addUser(newUser);
-    List savedUsers = newRestaurant.getUsers();
-    assertEquals(savedUsers.size(), 1);
-  }
+  // @Test
+  // public void getUsers_getsAllUsersAssociatedWithOneRestaurant() {
+  //   Restaurant newRestaurant = new Restaurant("Original Hotcake House", "555-5555", "1010 SE Powell Rd.", "Portland", "OR", "97202");
+  //   newRestaurant.save();
+  //
+  //   User newUser = new User("Stan");
+  //   newUser.save();
+  //
+  //   newRestaurant.addUser(newUser);
+  //   List savedUsers = newRestaurant.getUsers();
+  //   assertEquals(savedUsers.size(), 1);
+  // }
 
 }
