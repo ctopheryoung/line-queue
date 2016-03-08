@@ -68,7 +68,7 @@ public class App {
       User user = User.find(id);
       String name = request.queryParams("name");
       user.update(name);
-      response.redirect("/bands/" + id);
+      response.redirect("/users/" + id);
       return null;
     });
 

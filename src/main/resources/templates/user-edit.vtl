@@ -5,7 +5,7 @@ user-edit.vtl
 <form action="/users/$user.getId()" method="post">
   <div class="form-group">
     <label for="name">New name:</label>
-    <input required value="$band.getName()" type="text" class="form-control" name="name" id="name">
+    <input required value="$user.getUserName()" type="text" class="form-control" name="name" id="name">
   </div>
   <button type="submit" class="btn btn-info">Save</button>
 </form>
