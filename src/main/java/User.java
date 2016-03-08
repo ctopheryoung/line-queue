@@ -50,7 +50,7 @@ public class User {
       this.id = (int) con.createQuery(sql,true)
       .addParameter("user_name", this.user_name)
       .addParameter("password", this.password)
-      addParameter("permission", this.permission)
+      .addParameter("permission", this.permission)
       .executeUpdate()
       .getKey();
     }
@@ -85,14 +85,21 @@ public class User {
   }
 
   //UPDATE//
-  public void update(String newVenueName) {
-    this.user_name = newVenueName;
-    String sql = "UPDATE users SET user_name = :newVenueName WHERE id=:id";
+  public void update(String newUserName) {
+    this.user_name = newUserName;
+    String sql = "UPDATE users SET user_name = :newUserName WHERE id=:id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("newVenueName", newVenueName)
+      .addParameter("newUserName", newUserName)
       .addParameter("id", this.id)
       .executeUpdate();
+    }
+  }
+
+  public void updatePermission(String newPermission) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE users SET permission = :newPermission WHERE id = :id";
+      con.createQuery(sql).addParameter("newPermission", newPermission).addParameter("id", id).executeUpdate();
     }
   }
 

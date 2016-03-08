@@ -17,21 +17,21 @@ public class UserTest {
 
   @Test
   public void equals_returnsTrueIfNamesAreTheSame() {
-    User firstUser = new User("Bill");
-    User secondUser = new User("Bill");
+    User firstUser = new User("Bill", "password", "permission", "password", "permission");
+    User secondUser = new User("Bill", "password", "permission");
     assertTrue(firstUser.equals(secondUser));
   }
 
   @Test
   public void save_savesIntoDatabase_true() {
-    User myUser = new User("Bill");
+    User myUser = new User("Bill", "password", "permission");
     myUser.save();
     assertTrue(User.all().get(0).equals(myUser));
   }
 
   @Test
   public void find_findUserInDatabase_true() {
-    User myUser = new User("Bill");
+    User myUser = new User("Bill", "password", "permission");
     myUser.save();
     User savedUser = User.find(myUser.getId());
     assertTrue(myUser.equals(savedUser));
@@ -39,8 +39,8 @@ public class UserTest {
 
   @Test
   public void all_returnsAllInstancesOfUser_true() {
-    User firstUser = new User("Bill");
-    User secondUser = new User("Ted");
+    User firstUser = new User("Bill", "password", "permission");
+    User secondUser = new User("Ted", "password", "permission");
     firstUser.save();
     secondUser.save();
     assertTrue(User.all().contains(firstUser));
