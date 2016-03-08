@@ -5,12 +5,11 @@ import org.sql2o.*;
 public class User {
   private int id;
   private String user_name;
-  private int score;
+  private int score = 0;
 
   //CONSTRUCTOR//
-  public User(String user_name, int score) {
+  public User(String user_name) {
     this.user_name = user_name;
-    this.score = score;
   }
 
   //GETTERS//

@@ -26,6 +26,13 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/users", (request, response) -> {
+      User user = new User(request.queryParams("user_name"));
+      user.save();
+      response.redirect("/users");
+      return null;
+    });
+
     get("/users/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
@@ -53,6 +60,19 @@ public class App {
       model.put("template", "templates/restaurants.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/restaurants", (request, response) -> {
+      String restaurant_name = request.queryParams("restaurant_name");
+      String phone = request.queryParams("phone");
+      String street = request.queryParams("street");
+      String city = request.queryParams("city");
+      String state = request.queryParams("state");
+      String zip = request.queryParams("zip");
+      Restaurant restaurant = new Restaurant(restaurant_name, phone, street, city, state, zip);
+      restaurant.save();
+      response.redirect("/restaurants");
+      return null;
+    });
 
     get("/restaurants/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();

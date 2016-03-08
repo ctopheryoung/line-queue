@@ -1,0 +1,16 @@
+users.vtl
+
+<h1>User List</h1>
+
+<form action="/users" method="post">
+  <label for="user_name">Add a new user:</label>
+  <input id="user_name" name="user_name" type="text" required>
+  <button type="submit">Add User</button>
+</form>
+
+<h3>All users:</h3>
+#foreach ($user in $users)
+  <li><a href="/users/$user.getId()">$user.getUserName()</a></li>
+#end
+
+<p><a href='/'>Home</a></p>
