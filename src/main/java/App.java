@@ -13,7 +13,7 @@ public class App {
     //ROOT
     get("/", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/index.vtl");
+      model.put("template", "templates/login.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -26,6 +26,26 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/welcome", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String username = request.queryParams("username");
+      String password = request.queryParams("password");
+
+      //QUERIES DATABASE FOR USERNAME/PASSWORD COMBO? (login method)
+      User currentUser = User.login(username);
+
+      model.put("password", password);
+      model.put("currentUser", currentUser);
+      model.put("template", "templates/welcome.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("sign-up", (request, response) -> {
+
+      model.put("template", "templates/welcome.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/users", (request, response) -> {
       User user = new User(request.queryParams("user_name"));
       user.save();
@@ -33,7 +53,7 @@ public class App {
       return null;
     });
 
-    post("/add_restaurant", (request, response) -> {
+    post("/add-restaurant", (request, response) -> {
       int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
       int userId = Integer.parseInt(request.queryParams("user_id"));
       Restaurant restaurant = Restaurant.find(restaurantId);
@@ -94,7 +114,7 @@ public class App {
       return null;
     });
 
-    post("/add_user", (request, response) -> {
+    post("/add-user", (request, response) -> {
       int userId = Integer.parseInt(request.queryParams("user_id"));
       int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
       User user = User.find(userId);
@@ -122,5 +142,20 @@ public class App {
       model.put("template", "templates/restaurant-edit.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("restaurants/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Restaurant restaurant = Restaurant.find(id);
+      String restaurant_name = request.queryParams("restaurant_name");
+      String phone = request.queryParams("phone");
+      String street = request.queryParams("street");
+      String city = request.queryParams("city");
+      String state = request.queryParams("state");
+      String zip = request.queryParams("zip");
+      restaurant.update(restaurant_name, phone, street, city, state, zip);
+      response.redirect("/restaurants/" + id);
+      return null;
+    });
   }
 }
