@@ -9,7 +9,8 @@ public class Restaurant {
   private String city;
   private String state;
   private String zip;
-  private int line_average = 5;
+  private int line_average;
+  private String photo;
   //********ADD NEW CATS HERE**************
 
   public int getId() {
@@ -44,20 +45,26 @@ public class Restaurant {
     return line_average;
   }
 
+  public String getPhoto() {
+    return photo;
+  }
+
   //********ADD NEW GETS HERE**************
 
-  public Restaurant(String restaurant_name, String phone, String street, String city, String state, String zip) {
+  public Restaurant(String restaurant_name, String phone, String street, String city, String state, String zip, int line_average, String photo) {
     this.restaurant_name = restaurant_name;
     this.phone = phone;
     this.street = street;
     this.city = city;
     this.state = state;
     this.zip = zip;
+    this.line_average = line_average;
+    this.photo = photo;
       //********ADD NEW CATS HERE**************
   }
 
   public static List<Restaurant> all() {
-    String sql = "SELECT id, restaurant_name, phone, street, city, state, zip, line_average FROM restaurants ORDER BY restaurant_name";  //********ADD NEW CATS HERE**************
+    String sql = "SELECT id, restaurant_name, phone, street, city, state, zip, line_average, photo FROM restaurants ORDER BY restaurant_name";  //********ADD NEW CATS HERE**************
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Restaurant.class);
     }
@@ -75,7 +82,8 @@ public class Restaurant {
              this.getCity().equals(newRestaurant.getCity()) &&
              this.getState().equals(newRestaurant.getState()) &&
              this.getZip().equals(newRestaurant.getZip()) &&
-             this.getLineAverage() == (newRestaurant.getLineAverage());
+             this.getLineAverage() == (newRestaurant.getLineAverage()) &&
+             this.getPhoto().equals(newRestaurant.getPhoto());
              //********ADD NEW CATS HERE**************
     }
   }
@@ -83,7 +91,7 @@ public class Restaurant {
 //CREATE
 
   public void save() {
-    String sql = "INSERT INTO restaurants (restaurant_name, phone, street, city, state, zip, line_average) VALUES (:restaurant_name, :phone, :street, :city, :state, :zip, :line_average)";
+    String sql = "INSERT INTO restaurants (restaurant_name, phone, street, city, state, zip, line_average, photo) VALUES (:restaurant_name, :phone, :street, :city, :state, :zip, :line_average, :photo)";
     try(Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
           .addParameter("restaurant_name", restaurant_name)
@@ -93,6 +101,7 @@ public class Restaurant {
           .addParameter("state", state)
           .addParameter("zip", zip)
           .addParameter("line_average", line_average)
+          .addParameter("photo", photo)
           .executeUpdate()
           .getKey();
     }
@@ -101,7 +110,7 @@ public class Restaurant {
 //READ
 
   public static Restaurant find(int id) {
-    String sql = "SELECT id, restaurant_name, phone, street, city, state, zip, line_average FROM restaurants WHERE id = :id";
+    String sql = "SELECT id, restaurant_name, phone, street, city, state, zip, line_average, photo FROM restaurants WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       Restaurant restaurants = con.createQuery(sql)
         .addParameter("id", id)
@@ -112,8 +121,8 @@ public class Restaurant {
 
 //UPDATE
 
-  public void update(String restaurant_name, String phone, String street, String city, String state, String zip) {
-    String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, phone = :phone, street = :street, city = :city, state = :state, zip = :zip, line_average = :line_average WHERE id = :id";
+  public void update(String restaurant_name, String phone, String street, String city, String state, String zip, int line_average, String photo) {
+    String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, phone = :phone, street = :street, city = :city, state = :state, zip = :zip, line_average = :line_average, photo = :photo WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
         .addParameter("restaurant_name", restaurant_name)
@@ -124,6 +133,7 @@ public class Restaurant {
         .addParameter("zip", zip)
         .addParameter("line_average", line_average)
         .addParameter("id", id)
+        .addParameter("photo", photo)
         .executeUpdate();
     }
   }
@@ -157,7 +167,11 @@ public class Restaurant {
           // .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
           .executeUpdate();
       }
+      //INSERT INTO , check_in, in_line
+      //VALUES , :check_in, :in_line
   }
+
+
 
   public List<User> getUsers() {
     String sql = "SELECT users.* FROM restaurants " +
