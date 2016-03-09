@@ -29,6 +29,7 @@
     background: rgba($blue, 0.5);
     transition: all 300ms;
     &:hover{
+      letter-spacing: 2px;
       background: rgba($blue, 0.7);
     }
   }
