@@ -1,25 +1,56 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 import org.sql2o.*;
 
 public class User {
   private int id;
   private String user_name;
+  private String password;
+
+  // private String permission;
   private int score = 0;
 
   //CONSTRUCTOR//
-  public User(String user_name) {
+  public User(String user_name, String password) {
     this.user_name = user_name;
-  }
+    this.password = password;
+
+
+  } //PUT IN CONSTRUCTOR: , String permission
+    //    this.permission = permission;
 
   //GETTERS//
   public String getUserName() {
     return user_name;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
   public int getId() {
     return id;
   }
+
+  public int getScore() {
+    return score;
+  }
+
+
+
+  // public Timestamp getRightNow() {
+  //   Date date = new Date();
+  //   long time = date.getTime();
+  //   Timestamp right_now = new Timestamp(time);
+  //   return right_now;
+  // }
+
+  // public String getPermission() {
+  //   return permission;
+  // }
+
+
 
   @Override
   public boolean equals(Object otherUser){
@@ -34,9 +65,12 @@ public class User {
   //CREATE//
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO users(user_name) VALUES (:user_name)";
+      String sql = "INSERT INTO users(user_name, password) VALUES (:user_name, :password)";
       this.id = (int) con.createQuery(sql,true)
       .addParameter("user_name", this.user_name)
+      .addParameter("password", this.password)
+      // .addParameter("permission", this.permission)
+      //, permission, :permission
       .executeUpdate()
       .getKey();
     }
@@ -44,7 +78,7 @@ public class User {
 
   //READ//
   public static List<User> all() {
-    String sql = "SELECT id, user_name FROM users";
+    String sql = "SELECT id, user_name, password FROM users";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .executeAndFetch(User.class);
@@ -53,7 +87,7 @@ public class User {
 
   public static User find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM Users where id=:id";
+      String sql = "SELECT id, password FROM Users where id=:id";
       User user = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetchFirst(User.class);
@@ -70,13 +104,24 @@ public class User {
     }
   }
 
+  public static User login(String username) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT id, user_name, password FROM users WHERE user_name = :username";
+      return con.createQuery(sql)
+        .addParameter("username", username)
+        .executeAndFetchFirst(User.class);
+    }
+  }
+
   //UPDATE//
-  public void update(String newVenueName) {
-    this.user_name = newVenueName;
-    String sql = "UPDATE users SET user_name = :newVenueName WHERE id=:id";
+  public void update(String newUserName, String newPassword) {
+    this.user_name = newUserName;
+    this.password = newPassword;
+    String sql = "UPDATE users SET user_name = :newUserName AND password = :newPassword WHERE id=:id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("newVenueName", newVenueName)
+      .addParameter("newUserName", newUserName)
+      .addParameter("newPassword", newPassword)
       .addParameter("id", this.id)
       .executeUpdate();
     }
@@ -84,10 +129,11 @@ public class User {
 
   public void addRestaurant(Restaurant restaurant) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
+      String sql = "INSERT INTO check_ins (restaurant_id, user_id, line_length) VALUES (:restaurant_id, :user_id, :line_length)";
       con.createQuery(sql)
       .addParameter("restaurant_id", restaurant.getId())
       .addParameter("user_id", this.getId())
+      .addParameter("line_length", 3)
       .executeUpdate();
     }
   }
