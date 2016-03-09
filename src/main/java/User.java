@@ -6,13 +6,18 @@ public class User {
   private int id;
   private String user_name;
   private String password;
+
+  // private String permission;
   private int score = 0;
 
   //CONSTRUCTOR//
   public User(String user_name, String password) {
     this.user_name = user_name;
     this.password = password;
-  }
+
+
+  } //PUT IN CONSTRUCTOR: , String permission
+    //    this.permission = permission;
 
   //GETTERS//
   public String getUserName() {
@@ -31,6 +36,25 @@ public class User {
     return score;
   }
 
+
+
+  // public Timestamp getRightNow() {
+  //   Date date = new Date();
+  //   long time = date.getTime();
+  //   Timestamp right_now = new Timestamp(time);
+  //   return right_now;
+  // }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public String getPermission() {
+    return permission;
+  }
+
+
+
   @Override
   public boolean equals(Object otherUser){
     if (!(otherUser instanceof User)) {
@@ -48,6 +72,8 @@ public class User {
       this.id = (int) con.createQuery(sql,true)
       .addParameter("user_name", this.user_name)
       .addParameter("password", this.password)
+      // .addParameter("permission", this.permission)
+      //, permission, :permission
       .executeUpdate()
       .getKey();
     }
@@ -69,6 +95,16 @@ public class User {
       .addParameter("id", id)
       .executeAndFetchFirst(User.class);
       return user;
+    }
+  }
+
+  public static User login(String user_name) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM Users where user_name=:user_name";
+      Login login = con.createQuery(sql)
+      .addParameter("user_name", user_name)
+      .executeAndFetchFirst(User.class);
+      return login;
     }
   }
 
@@ -101,6 +137,13 @@ public class User {
       .addParameter("newPassword", newPassword)
       .addParameter("id", this.id)
       .executeUpdate();
+    }
+  }
+
+  public void updatePermission(String newPermission) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE users SET permission = :newPermission WHERE id = :id";
+      con.createQuery(sql).addParameter("newPermission", newPermission).addParameter("id", id).executeUpdate();
     }
   }
 
