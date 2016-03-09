@@ -1,0 +1,33 @@
+.navbar{
+  @include position($top: 3em, $right: 2em);
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  .main-menu{
+    @include position($top: 2em, $right: -0.5em);
+    padding: 10px 15px;
+    background: rgba($black, 0.8);
+    display: none;
+    li{
+      padding: 10px;
+      font-family: sans-serif;
+      letter-spacing: 1px;
+      a{
+        color: $white;
+        transition: all 300ms;
+        &:hover{
+          color: $maroon;
+        }
+      }
+    }
+  }
+  i{
+    color: $white;
+    font-size: 30px;
+    transition: all 300ms;
+    &:hover{
+      cursor: pointer;
+      color: $maroon;
+    }
+  }
+}

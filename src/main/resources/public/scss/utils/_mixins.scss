@@ -1,0 +1,13 @@
+@mixin dimension($height: null, $width: null, $radius: 50%){
+  height: $height;
+  width: $width;
+  border-radius: $radius;
+}
+
+@mixin position($position: absolute, $top: null, $right: null, $bottom: null, $left: null){
+  position:$position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}

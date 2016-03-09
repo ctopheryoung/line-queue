@@ -1,0 +1,35 @@
+.login-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin-top: 4em;
+
+  .login-field{
+    @extend %login-sizing;
+    background: rgba($maroon, 0.5);
+    transition: all 300ms;
+    &:focus{
+      outline: none;
+      background: rgba($maroon, 0.7);
+    }
+  }
+  .password-field{
+    @extend %login-sizing;
+    background: rgba($lavender, 0.5);
+    transition: all 300ms;
+    &:focus{
+      outline: none;
+      background: rgba($lavender, 0.7);
+    }
+  }
+  .sign-in-button{
+    @extend %login-sizing;
+    width: 25%;
+    background: rgba($blue, 0.5);
+    transition: all 300ms;
+    &:hover{
+      background: rgba($blue, 0.7);
+    }
+  }
+}

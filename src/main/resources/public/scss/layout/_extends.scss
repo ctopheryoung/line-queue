@@ -1,0 +1,25 @@
+%button{
+  width: 35%;
+  background: $white;
+  transition: all 300ms;
+}
+
+%login-sizing{
+  border: none;
+  width: 60%;
+  padding: 10px;
+  margin: 5px;
+  color: $white;
+  text-align: center;
+  text-shadow: 1px 1px $black;
+  letter-spacing: 1px;
+}
+
+%form-sizing{
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  color: $white;
+  text-shadow: 1px 1px $black;
+  letter-spacing: 1px;
+}
