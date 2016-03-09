@@ -5,12 +5,19 @@ import org.sql2o.*;
 public class User {
   private int id;
   private String user_name;
+  private String password;
+  private String permission;
   private int score = 0;
 
   //CONSTRUCTOR//
-  public User(String user_name) {
+  public User(String user_name, String password, String permission) {
     this.user_name = user_name;
+<<<<<<< HEAD
 
+=======
+    this.password = password;
+    this.permission = permission;
+>>>>>>> 3e4257cbe709b825d26fa21e9dced0ec4871f948
   }
 
   //GETTERS//
@@ -22,12 +29,22 @@ public class User {
     return id;
   }
 
+
   // public Timestamp getRightNow() {
   //   Date date = new Date();
   //   long time = date.getTime();
   //   Timestamp right_now = new Timestamp(time);
   //   return right_now;
   // }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public String getPermission() {
+    return permission;
+  }
+
 
   @Override
   public boolean equals(Object otherUser){
@@ -42,9 +59,11 @@ public class User {
   //CREATE//
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO users(user_name) VALUES (:user_name)";
+      String sql = "INSERT INTO users(user_name, password, permission) VALUES (:user_name, :password, :permission)";
       this.id = (int) con.createQuery(sql,true)
       .addParameter("user_name", this.user_name)
+      .addParameter("password", this.password)
+      .addParameter("permission", this.permission)
       .executeUpdate()
       .getKey();
     }
@@ -69,6 +88,16 @@ public class User {
     }
   }
 
+  public static User login(String user_name) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM Users where user_name=:user_name";
+      Login login = con.createQuery(sql)
+      .addParameter("user_name", user_name)
+      .executeAndFetchFirst(User.class);
+      return login;
+    }
+  }
+
   public List<Restaurant> getRestaurants() {
     String sql = "SELECT restaurants.* FROM users JOIN check_ins ON (users.id = check_ins.user_id) JOIN restaurants ON (check_ins.restaurant_id = restaurants.id) WHERE users.id = :user_id";
     try(Connection con = DB.sql2o.open()) {
@@ -87,6 +116,13 @@ public class User {
       .addParameter("newUserName", newUserName)
       .addParameter("id", this.id)
       .executeUpdate();
+    }
+  }
+
+  public void updatePermission(String newPermission) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE users SET permission = :newPermission WHERE id = :id";
+      con.createQuery(sql).addParameter("newPermission", newPermission).addParameter("id", id).executeUpdate();
     }
   }
 
