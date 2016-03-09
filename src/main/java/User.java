@@ -10,6 +10,7 @@ public class User {
   //CONSTRUCTOR//
   public User(String user_name) {
     this.user_name = user_name;
+
   }
 
   //GETTERS//
@@ -20,6 +21,13 @@ public class User {
   public int getId() {
     return id;
   }
+
+  // public Timestamp getRightNow() {
+  //   Date date = new Date();
+  //   long time = date.getTime();
+  //   Timestamp right_now = new Timestamp(time);
+  //   return right_now;
+  // }
 
   @Override
   public boolean equals(Object otherUser){
