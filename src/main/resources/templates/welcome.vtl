@@ -1,33 +1,38 @@
 user.vtl
 
-#if($password.equals($user.getPassword()))
-<h1>Welcome, $user.getUserName().</h1>
+#if($password.equals($currentUser.getPassword()))
+<h1>Welcome, $currentUser.getUserName().</h1>
+
+  <h4><a href="/restaurants">Check a line length.</a></h4>
 
   <h4>Report a line</h4>
   <form action='/add-restaurant' method='post'>
-    <input id="user_id" name="user_id" type="hidden" value="$user.getId()">
+    <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
     <label for="restaurant_id">Select a restaurant</label>
     <select id='restaurant_id' name='restaurant_id' type='text'>
       #foreach($restaurant in $allRestaurants)
       <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
       #end
     </select>
-    <button type='submit'>Add Restaurant</button>
+    <label for="line_length">Line length (estimate number of people)</label>
+    <input id="line_length" name="line_length" type="text" required>
+    <button type='submit'>Report</button>
   </form>
 
-  #if($user.getRestaurants())
-    <p>Lines you have waited in:</p>
+  <p>Don't see the restaurant you are looking for? <a href="/add-restaurant">Add it now.</a></p>
+
+  #if($currentUser.getRestaurants())
+    <p>Lines you have reported:</p>
     <ul>
-      #foreach($restaurant in $user.getRestaurants())
+      #foreach($restaurant in $currentUser.getRestaurants())
         <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
       #end
     </ul>
   #end
-  <p><a href="/users/$user.getId()/edit">Edit My Info</a></p>
-  <form action="/users/$user.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button type="submit">Delete My Profile</button></form>
+  <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
   <p><a href='/'>Home</a></p>
 #end
 
-#if(!$password.equals($user.getPassword()))
+#if(!$password.equals($currentUser.getPassword()))
  <p>Invalid username/password combination. <a href="/">Try again.</a></p>
 #end

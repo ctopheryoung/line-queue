@@ -2,10 +2,10 @@ user-edit.vtl
 
 <h1>Edit $user.getUserName():</h1>
 
-<form action="/users/$user.getId()" method="post">
-  <div class="form-group">
-    <label for="name">New name:</label>
-    <input required value="$user.getUserName()" type="text" class="form-control" name="name" id="name">
-  </div>
+<form action="/welcome" method="post">
+  <label for="username">Username:</label>
+  <input required value="$user.getUserName()" type="text" class="form-control" name="username" id="username">
+  <label for="password">Username:</label>
+  <input required value="$user.getPassword()" type="password" class="form-control" name="password" id="password">
   <button type="submit" class="btn btn-info">Save</button>
 </form>

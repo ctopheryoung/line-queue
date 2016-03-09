@@ -5,11 +5,13 @@ import org.sql2o.*;
 public class User {
   private int id;
   private String user_name;
+  private String password;
   private int score = 0;
 
   //CONSTRUCTOR//
-  public User(String user_name) {
+  public User(String user_name, String password) {
     this.user_name = user_name;
+    this.password = password;
   }
 
   //GETTERS//
@@ -17,8 +19,16 @@ public class User {
     return user_name;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
   public int getId() {
     return id;
+  }
+
+  public int getScore() {
+    return score;
   }
 
   @Override
@@ -34,9 +44,10 @@ public class User {
   //CREATE//
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO users(user_name) VALUES (:user_name)";
+      String sql = "INSERT INTO users(user_name, password) VALUES (:user_name, :password)";
       this.id = (int) con.createQuery(sql,true)
       .addParameter("user_name", this.user_name)
+      .addParameter("password", this.password)
       .executeUpdate()
       .getKey();
     }
@@ -44,7 +55,7 @@ public class User {
 
   //READ//
   public static List<User> all() {
-    String sql = "SELECT id, user_name FROM users";
+    String sql = "SELECT id, user_name, password FROM users";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .executeAndFetch(User.class);
@@ -70,13 +81,24 @@ public class User {
     }
   }
 
+  public static User login(String username) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM users WHERE user_name = :username";
+      return con.createQuery(sql)
+        .addParameter("username", username)
+        .executeAndFetchFirst(User.class);
+    }
+  }
+
   //UPDATE//
-  public void update(String newUserName) {
+  public void update(String newUserName, String newPassword) {
     this.user_name = newUserName;
-    String sql = "UPDATE users SET user_name = :newUserName WHERE id=:id";
+    this.password = newPassword;
+    String sql = "UPDATE users SET user_name = :newUserName AND password = :newPassword WHERE id=:id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
       .addParameter("newUserName", newUserName)
+      .addParameter("newPassword", newPassword)
       .addParameter("id", this.id)
       .executeUpdate();
     }
