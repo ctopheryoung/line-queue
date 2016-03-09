@@ -25,8 +25,9 @@ user.vtl
   #end
   <p><a href="/users/$user.getId()/edit">Edit My Info</a></p>
   <form action="/users/$user.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button type="submit">Delete My Profile</button></form>
+  <p><a href='/'>Home</a></p>
 #end
 
-
-
-<p><a href='/'>Home</a></p>
+#if(!$password.equals($user.getPassword()))
+ <p>Invalid username/password combination. <a href="/">Try again.</a></p>
+#end
