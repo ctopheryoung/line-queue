@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,9 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    //USERS ROUTES
+    //USERS ROUTES...
+
+    //LIST OF ALL USERS
     get("/users", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       List<User> users = User.all();
@@ -26,30 +29,33 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //AFTER LOGGING IN PAGE/ACCOUNT HOME PAGE
     post("/welcome", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String username = request.queryParams("username");
       String password = request.queryParams("password");
 
-      //QUERIES DATABASE FOR USERNAME/PASSWORD COMBO? (login method)
       User currentUser = User.login(username);
 
       model.put("password", password);
       model.put("currentUser", currentUser);
+      model.put("allRestaurants", Restaurant.all());
       model.put("template", "templates/welcome.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("sign-up", (request, response) -> {
-
-      model.put("template", "templates/welcome.vtl");
+    get("new-user", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/new-user.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/users", (request, response) -> {
-      User user = new User(request.queryParams("user_name"));
-      user.save();
-      response.redirect("/users");
+    post("/save-new-user", (request, response) -> {
+      String user_name = request.queryParams("newUserName");
+      String password = request.queryParams("newPassword");
+      User newUser = new User(user_name, password);
+      newUser.save();
+      response.redirect("/");
       return null;
     });
 
@@ -83,11 +89,11 @@ public class App {
     }, new VelocityTemplateEngine());
 
     post("users/:id", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       User user = User.find(id);
-      String name = request.queryParams("name");
-      user.update(name);
+      String user_name = request.queryParams("user_name");
+      String password = request.queryParams("password");
+      user.update(user_name, password);
       response.redirect("/users/" + id);
       return null;
     });
@@ -98,6 +104,12 @@ public class App {
       List<Restaurant> restaurants = Restaurant.all();
       model.put("restaurants", restaurants);
       model.put("template", "templates/restaurants.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/add-restaurant", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/new-restaurant.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
