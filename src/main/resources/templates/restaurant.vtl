@@ -13,7 +13,7 @@ restaurant.vtl
 
 <h4>Add a user that has visited $restaurant.getRestaurantName():</h4>
 
-<form action='/add_user' method='post'>
+<form action='/add-user' method='post'>
     <input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()">
     <label for="user_id">Select a user:</label>
     <select id='user_id' name='user_id' type='text'>
@@ -24,7 +24,7 @@ restaurant.vtl
     <button type='submit'>Add User</button>
 </form>
 
-<p><a href="/restaurant/$restaurant.getId()/edit">Edit Restaurant</a></p>
+<p><a href="/restaurants/$restaurant.getId()/edit">Edit Restaurant</a></p>
 
 <form action="/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button type="submit">Delete Restaurant</button></form>
 
