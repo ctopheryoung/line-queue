@@ -9,7 +9,7 @@ public class Restaurant {
   private String city;
   private String state;
   private String zip;
-  private int line_average = 5;
+  private int line_average;
   private String photo;
   //********ADD NEW CATS HERE**************
 
@@ -121,7 +121,7 @@ public class Restaurant {
 
 //UPDATE
 
-  public void update(String restaurant_name, String phone, String street, String city, String state, String zip, int line_average) {
+  public void update(String restaurant_name, String phone, String street, String city, String state, String zip, int line_average, String photo) {
     String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, phone = :phone, street = :street, city = :city, state = :state, zip = :zip, line_average = :line_average, photo = :photo WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
@@ -158,16 +158,20 @@ public class Restaurant {
   }
 
   public void addUser(User user) {
-      String sql = "INSERT INTO check_ins (restaurant_id, user_id, check_in, in_line) VALUES (:restaurant_id, :user_id, :check_in, :in_line)";
+      String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
       try(Connection con = DB.sql2o.open()) {
         con.createQuery(sql)
           .addParameter("restaurant_id", id)
           .addParameter("user_id", user.getId())
-          .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
-          .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
+          // .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
+          // .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
           .executeUpdate();
       }
+      //INSERT INTO , check_in, in_line
+      //VALUES , :check_in, :in_line
   }
+
+
 
   public List<User> getUsers() {
     String sql = "SELECT users.* FROM restaurants " +
