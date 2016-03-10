@@ -19,38 +19,42 @@ restaurants.vtl
  </div>
 
 <div class="wrapper">
-  
-  <h1>Restaurants</h1>
-  <h3>Click a restaurant to see details and recently reported line lengths.</h3>
+
+  <h1 class="title">Restaurants</h1>
+  <h2 class="title-secondary">Click a restaurant for line details.</h2>
 
   #foreach ($restaurant in $restaurants)
-  <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+  <ul class="main-list">
+    <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+  </ul>
   #end
+  
+  <h3 class="title-secondary">Add a Restaurant</h3>
 
-  <h3>Add a Restaurant:</h3>
-  <form action="/$currentUser.getId()/restaurants" method="post">
-    <label for="restaurant_name">Restaurant Name:</label>
-    <input id="restaurant_name" name="restaurant_name" type="text" required>
+  <i class="fa fa-chevron-down"></i>
+  <i class="fa fa-chevron-up"></i>
 
-    <label for="phone">Phone Number:</label>
-    <input id="phone" name="phone" type="text" required>
+  <form class="hidden-form" action="/$currentUser.getId()/restaurants" method="post">
+    <div class="info-form">
+      <label class="reg-label" for="restaurant_name">Restaurant Name:</label>
+      <input class="blue-field" id="restaurant_name" name="restaurant_name" type="text" required>
 
-    <div class="form-group">
-      <label for="street">Street Address:</label>
-      <input id="street" name="street" type="text" required>
+      <label class="reg-label" for="phone">Phone Number:</label>
+      <input class="lavender-field" id="phone" name="phone" type="text" required>
 
-      <label for="city">City:</label>
-      <input id="city" name="city" type="text" required>
+      <label class="reg-label" for="street">Street Address:</label>
+      <input class="maroon-field" id="street" name="street" type="text" required>
 
-      <label for="state">State:</label>
-      <input id="state" name="state" type="text" required>
+      <label class="reg-label" for="city">City:</label>
+      <input class="lavender-field" id="city" name="city" type="text" required>
 
-      <label for="zip">Zip:</label>
-      <input id="zip" name="zip" type="text" required>
+      <label class="reg-label" for="state">State:</label>
+      <input class="blue-field" id="state" name="state" type="text" required>
+
+      <label class="reg-label" for="zip">Zip:</label>
+      <input class="maroon-field" id="zip" name="zip" type="text" required>
+
+      <button class="blue-button button" type="submit"><i class="fa fa-plus"></i></button>
     </div>
-    <button type="submit">Add Restaurant</button>
   </form>
-
-  <p><a href="/$currentUser.getId()/home">Home</a></p>
-
 </div>
