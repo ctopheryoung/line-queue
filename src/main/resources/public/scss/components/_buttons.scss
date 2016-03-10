@@ -1,0 +1,32 @@
+.button{
+  border: none;
+  padding: 10px;
+  letter-spacing: 1px;
+}
+
+.button1{
+  @extend %button;
+  &:hover{
+    letter-spacing: 2px;
+    background: $maroon;
+    color: $white;
+  }
+}
+
+.button2{
+  @extend %button;
+  &:hover{
+    letter-spacing: 2px;
+    background: $lavender;
+    color: $white;
+  }
+}
+
+.button3{
+  @extend %button;
+  &:hover{
+    letter-spacing: 2px;
+    background: $blue;
+    color: $white;
+  }
+}

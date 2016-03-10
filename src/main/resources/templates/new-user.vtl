@@ -1,13 +1,30 @@
 new-user.vtl
 
-<h1>Sign up for Q.</h1>
-<h3>Create an account:</h3>
-<form action="/save-new-user" method="post">
-  <label for="newUserName">Username:</label>
-  <input id="newUserName" name="newUserName" type="text" required>
-  <label for="newPassword">Password:</label>
-  <input id="newPassword" name="newPassword" type="password" required>
-  <button type="submit">Create Account</button>
-</form>
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
 
-<a href="/">Return Home</a>
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li><a href='/'>Home</a></li>
+    <li><a href='/new-user'>Sign Up</a></li>
+    <li><a href="/add-restaurant">add restaurant</a></li>
+    <li><a href="#">users</a></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+  <h1 class="title">Join the Q</h1>
+  <h3>Create an account:</h3>
+  <form class="login-form" action="/save-new-user" method="post">
+    <label class="reg-label" for="newUserName"> New Username</label>
+    <input class="login-field" id="newUserName" name="newUserName" type="text" required>
+    <label class="reg-label" for="newPassword">New Password</label>
+    <input class="password-field" id="newPassword" name="newPassword" type="password" required>
+    <button class="button3 button" type="submit">Create Account</button>
+  </form>
+</div>

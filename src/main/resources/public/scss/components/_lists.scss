@@ -1,0 +1,15 @@
+.main-list{
+  margin: 2em;
+  li{
+    padding: 0.5em;
+    letter-spacing: 1px;
+    transition: all 300ms;
+    &:hover{
+      letter-spacing: 3px;
+      background: rgba($lavender, 0.5);
+    }
+    a{
+      color: $white;
+    }
+  }
+}

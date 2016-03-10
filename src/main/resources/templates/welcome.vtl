@@ -5,9 +5,9 @@ user.vtl
 #if($password.equals($currentUser.getPassword()))
  <h1>Success!</h1>
  <h3>Redirecting to account page.</h3>
- <meta http-equiv="refresh" content="0; url=/$currentUser.getId()/home" />
+ <meta http-equiv="refresh" content="3; url=/$currentUser.getId()/home" />
 #end
 
 #if(!$password.equals($currentUser.getPassword()))
- <p>Invalid username/password combination. <a href="/">Try again.</a></p>
+<p>Invalid username/password combination. <a href="/">Try again.</a></p>
 #end

@@ -1,20 +1,32 @@
 index.vtl
 
-<h1>Q.</h1>
+<div class="hero">
 
-<h3>It's for lines.</h3>
-
-<h4>Login:</h4>
-<form class="login" action="/welcome" method="post">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input required type="text" name="username" id="username">
-    <label for="password">Password:</label>
-    <input required type="password" name="password" id="password">
-    <button type="submit" class="btn btn-info">Log In</button>
+  <div class="logo">
+    <h1>Q</h1>
+    <div class="circle1 circle"></div>
+    <div class="circle2 circle"></div>
+    <div class="circle3 circle"></div>
   </div>
-</form>
-<p><a href='/new-user'>Create An Account</a></p>
+
+  <div class="navbar">
+    <i class="fa fa-bars"></i>
+    <ul class="main-menu">
+      <li><a href='/new-user'>Sign Up</a></li>
+      <li><a href="/add-restaurant">add restaurant</a></li>
+      <li><a href="#">users</a></li>
+    </ul>
+  </div>
+
+  <h3 class="title">It's for lines</h3>
+
+  <form class="login-form" action="/welcome" method="post">
+    <input class="login-field" required type="text" name="username" id="username">
+    <input class="password-field" required type="password" name="password" id="password">
+    <button class="sign-in-button" type="submit">Log In</button>
+  </form>
+
+</div>
 
 
 Sparkles:
