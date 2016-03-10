@@ -1,6 +1,17 @@
 restaurant.vtl
 - Logged in as: $currentUser.getUserName()
 
+
+<h1>$restaurant.getRestaurantName()</h1>
+<h1>$restaurant.getPhone()</h1>
+<h1>$restaurant.getStreet()</h1>
+<h1>$restaurant.getCity()</h1>
+<h1>$restaurant.getState()</h1>
+<h1>$restaurant.getZip()</h1>
+
+
+
+
 <div class="logo">
   <h1>Q</h1>
   <div class="circle1 circle"></div>
@@ -23,15 +34,25 @@ restaurant.vtl
   <h1 class="title">$restaurant.getRestaurantName()</h1>
   PUT IN RESTAURANT INFO HERE
   #if($restaurant.getUsers())
+
   <p>Recent line reports: (WILL EVENTUALLY HAVE USER, LINE LENGTH, AND TIMESTAMP?)</p>
   <ul class="main-list">
     #foreach($user in $restaurant.getUsers())
-    <li><a href="/users/$user.getId()">$user.getUserName()</a></li>
+
+      <li><a href="/users/$user.getId()">Last Person To Check In: $user.getUserName()</a></li>
+      <li>Current Length of the Line: $restaurant.getLineLength()</li>
+      <li>Last Check In Happened At: $restaurant.getTime()</li>
+
     #end
   </ul>
   #end
 
-  <iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="300" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+<p><a href="/$currentUser.getId()/home">Home</a></p>
+
+<iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="400" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+<img src="$restaurant.getPhoto()">
 
   <form action="/$currentUser.getId()/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button class="maroon-button button" type="submit">Delete Restaurant</button></form>
 </div>

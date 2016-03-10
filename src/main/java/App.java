@@ -109,7 +109,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       User user = User.find(id);
-      model.put("currentUser", user)
+      model.put("currentUser", user);
       model.put("user", user);
       model.put("template", "templates/user-edit.vtl");
       return new ModelAndView(model, layout);
@@ -167,7 +167,6 @@ public class App {
       int userId = Integer.parseInt(request.params("userId"));
       User currentUser = User.find(userId);
       model.put("currentUser", currentUser);
-      model.put("allUsers", User.all());
       model.put("restaurant", restaurant);
       model.put("template", "templates/restaurant.vtl");
       return new ModelAndView(model, layout);

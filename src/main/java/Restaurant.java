@@ -1,6 +1,7 @@
 import org.sql2o.*;
 import java.util.List;
 import java.util.Date;
+import java.sql.Timestamp;
 import org.apache.commons.lang.time.DateFormatUtils;
 
 public class Restaurant {
@@ -195,24 +196,36 @@ public class Restaurant {
     }
   }
 
-  // public Integer getLineLength() {
-  //   String sql = "SELECT line_length FROM check_ins WHERE id = :id";
-  //   try (Connection con = DB.sql2o.open()) {
-  //     return con createQuery(sql)
-  //         .addParameter("id", id)
-  //         .executeScalar(Integer.class);
-  //   }
-  // }
-  //
-  public Date getTimeStamp() {
-    String sql = "SELECT modified FROM check_ins WHERE id = :id";
+  public Integer getLineLength() {
+    String sql = "SELECT line_length FROM check_ins WHERE id = :id";
     try (Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
-            .addParameter("id", id)
-            .executeScalar(Date.class);
+          .addParameter("id", id)
+          .executeScalar(Integer.class);
     }
   }
 
+  public Timestamp getTime() {
+    String sql = "SELECT modified FROM check_ins WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeScalar(Timestamp.class);
+
+
+      }
+      //  THIS WORKS!
+  }
+
+  // public Timestamp getTime() {
+  //   String sql = "SELECT modified FROM check_ins WHERE id = :id";
+  //   try(Connection con = DB.sql2o.open()) {
+  //     Timestamp timestamp = con.createQuery(sql)
+  //       .addParameter("id", id)
+  //       .executeScalar(Timestamp.class);
+  //       //PUT IN SOMETHING THAT CHANGES TIMESTAMP TO STRING IN HERE?
+  //   }
+  // }
   // public String getTimeStamp() {
   //   String sql = "SELECT modified FROM check_ins WHERE id = :id";
   //   try (Connection con = DB.sql2o.open()) {
