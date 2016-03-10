@@ -48,7 +48,7 @@
     margin-top: 0.5em;
     label{
       letter-spacing: 1px;
-      font-size: 12px;
+      font-size: $sm-font;
       margin: 5px;
     }
     input{
@@ -67,12 +67,12 @@
 //Labels
 
 .reg-label{
-  font-size: 20px;
+  font-size: $reg-font;
   margin-top: 15px;
 }
 
 .sm-label{
-  font-size: 12px;
+  font-size: $ex-sm-font;
 }
 
 //Dropdown Styles
@@ -80,7 +80,7 @@
 .dropdown-field{
   background: rgba($maroon, 0.5);
   color: $white;
-  font-size: 18px;
+  font-size: $reg-font;
 }
 
 .inline-dropdown{

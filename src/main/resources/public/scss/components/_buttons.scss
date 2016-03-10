@@ -4,6 +4,15 @@
   letter-spacing: 1px;
 }
 
+.button-lg{
+  border: none;
+  padding: 20px;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  font-size: $med-lg-font;
+  font-family: 'Lobster Two', cursive;
+}
+
 .maroon-button{
   @extend %button;
   &:hover{
