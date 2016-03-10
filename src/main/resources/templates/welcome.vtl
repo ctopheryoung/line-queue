@@ -4,7 +4,7 @@ user.vtl
 
 #if($password.equals($currentUser.getPassword()))
  <h1>Success!</h1>
- <h3>Redirecting to account page.</h3>
+ <h3>Login successful, redirecting to account home page.</h3>
  <meta http-equiv="refresh" content="3; url=/$currentUser.getId()/home" />
 #end
 
