@@ -127,6 +127,13 @@ public class User {
     }
   }
 
+  public void updatePermission(String newPermission) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE users SET permission = :newPermission WHERE id = :id";
+      con.createQuery(sql).addParameter("newPermission", newPermission).addParameter("id", id).executeUpdate();
+    }
+  }
+
   public void addRestaurant(Restaurant restaurant) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO check_ins (restaurant_id, user_id, line_length) VALUES (:restaurant_id, :user_id, :line_length)";

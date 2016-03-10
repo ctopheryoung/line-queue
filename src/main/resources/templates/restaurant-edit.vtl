@@ -1,1 +1,26 @@
 restaurant-edit.vtl
+
+<h1>Edit $restaurant.getRestaurantName():</h1>
+
+<form action="/restaurants/$restaurant.getId()" method="post">
+  <label for="restaurant_name">Restaurant Name:</label>
+  <input id="restaurant_name" name="restaurant_name" type="text" value="$restaurant.getRestaurantName()" required>
+
+  <label for="phone">Phone Number:</label>
+  <input id="phone" name="phone" type="text" value="$restaurant.getPhone()" required>
+
+  <label for="street">Street Address:</label>
+  <input id="street" name="street" type="text" value="$restaurant.getStreet()" required>
+
+  <label for="city">City:</label>
+  <input id="city" name="city" type="text" value="$restaurant.getCity()" required>
+
+  <label for="state">State:</label>
+  <input id="state" name="state" type="text" value="$restaurant.getState()" required>
+
+  <label for="zip">Zip:</label>
+  <input id="zip" name="zip" type="text" value="$restaurant.getZip()" required>
+  <button type="submit" class="btn btn-info">Save</button>
+</form>
+
+<a href="/restaurants/$restaurant.getId()">Back</a>

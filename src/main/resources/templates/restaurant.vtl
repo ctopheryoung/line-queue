@@ -1,0 +1,31 @@
+restaurant.vtl
+
+<h1>$restaurant.getRestaurantName()</h1>
+
+#if($restaurant.getUsers())
+  <p>Here are the users that have visited $restaurant.getRestaurantName():</p>
+  <ul>
+    #foreach($user in $restaurant.getUsers())
+      <li><a href="/users/$user.getId()">$user.getUserName()</a></li>
+    #end
+  </ul>
+#end
+
+<h4>Add a user that has visited $restaurant.getRestaurantName():</h4>
+
+<form action='/add-user' method='post'>
+    <input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()">
+    <label for="user_id">Select a user:</label>
+    <select id='user_id' name='user_id' type='text'>
+      #foreach($user in $allUsers)
+        <option value="$user.getId()">$user.getUserName()</option>
+      #end
+    </select>
+    <button type='submit'>Add User</button>
+</form>
+
+<p><a href="/restaurants/$restaurant.getId()/edit">Edit Restaurant</a></p>
+
+<form action="/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button type="submit">Delete Restaurant</button></form>
+
+<p><a href='/'>Home</a></p>
