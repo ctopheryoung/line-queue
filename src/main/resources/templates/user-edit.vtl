@@ -3,10 +3,10 @@ user-edit.vtl
 <h1>Edit Account Details</h1>
 
 <form action="/edit-user" method="post">
-  <input  value="$user.getId()" type="hidden" name="userId" id="userId">
+  <input  value="$currentUser.getId()" type="hidden" name="userId" id="userId">
   <label for="username">Username:</label>
-  <input required value="$user.getUserName()" type="text" class="form-control" name="username" id="username">
-  <label for="password">Username:</label>
-  <input required value="$user.getPassword()" type="password" class="form-control" name="password" id="password">
+  <input required value="$currentUser.getUserName()" type="text" class="form-control" name="username" id="username">
+  <label for="password">Password:</label>
+  <input required value="$currentUser.getPassword()" type="password" class="form-control" name="password" id="password">
   <button type="submit" class="btn btn-info">Save</button>
 </form>
