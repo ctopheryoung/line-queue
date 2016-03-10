@@ -8,9 +8,10 @@
 <div class="navbar">
   <i class="fa fa-bars"></i>
   <ul class="main-menu">
-    <p><a href='/'>Log Out</a></p>
-    <li><a href="/add-restaurant">add restaurant</a></li>
-    <a href="/users/$currentUser.getId()/edit">Edit Profile</a>
+    <li>Logged in as: $currentUser.getUserName()</li>
+    <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
+    <li><a href="/$currentUser.getId()/add-restaurant">add restaurant</a></li>
+    <li><a href='/'>Log Out</a></li>
   </ul>
 </div>
 
@@ -24,33 +25,49 @@
   <i class="fa fa-chevron-down"></i>
   <i class="fa fa-chevron-up"></i>
 
-    <form class="hidden-form" action='/add-restaurant' method='post'>
-      <!-- <div class="info-form"> -->
-        <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
+  <button type="button" class="button2 button"><a href="/$currentUser.getId()/restaurants">Check line lengths</a></button>
 
-        <div class="inline-dropdown">
-          <label class="reg-label" for="restaurant_id">Select</label>
-          <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
-            #foreach($restaurant in $allRestaurants)
-            <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
-            #end
-          </select>
-        </div>
+  <form class="login-form" action='/$currentUser.getId()/add-restaurant' method='post'>
+    <h2 class="title-secondary">Report a line</h2>
 
-        <label class="reg-label" for="line_length">Line length<br><span class="sm-label">(estimate number of people)</span></label>
+    <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
 
-        <input class="lavender-field" id="line_length" name="line_length" type="text" required>
-
-        <button class="blue-button button" type='submit'>Report</button>
-      <!-- </div> -->
-    </form>
+    <div class="inline-dropdown">
+      <label class="reg-label" for="restaurant_id">Select Restaurant</label>
+      <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
+        #foreach($restaurant in $allRestaurants)
+        <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
+        #end
+      </select>
+      <label class="reg-label" for="line_length">Line length (# of people)</label>
+      <select class="dropdown-field" id='line_length' name='line_length' type='text'>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15+">15+</option>
+      </select>
+    </div>
+    <button class="button3 button" type='submit'>Report</button>
+  </form>
 
   #if($currentUser.getRestaurants())
   <h2 class="title-secondary">Your Q</h2>
   <ul class="main-list">
     #foreach($restaurant in $currentUser.getRestaurants())
-    <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+    <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
     #end
   </ul>
   #end
+
 </div>
