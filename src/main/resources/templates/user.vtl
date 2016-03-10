@@ -18,18 +18,14 @@
 <div class="wrapper">
   <h1 class="title">Welcome, $currentUser.getUserName().</h1>
 
-  <a class="lavender-button button-lg" href="/restaurants">Check the Q</a>
+  <a class="lavender-button button-lg" href="</$currentUser.getId()/restaurants">Check the Q</a>
 
   <h2 class="title-secondary">Report a line</h2>
 
   <i class="fa fa-chevron-down"></i>
   <i class="fa fa-chevron-up"></i>
 
-  <button type="button" class="button2 button"><a href="/$currentUser.getId()/restaurants">Check line lengths</a></button>
-
   <form class="login-form" action='/$currentUser.getId()/add-restaurant' method='post'>
-    <h2 class="title-secondary">Report a line</h2>
-
     <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
 
     <div class="inline-dropdown">
