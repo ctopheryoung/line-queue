@@ -4,7 +4,7 @@
   letter-spacing: 1px;
 }
 
-.button1{
+.maroon-button{
   @extend %button;
   &:hover{
     letter-spacing: 2px;
@@ -13,7 +13,7 @@
   }
 }
 
-.button2{
+.lavender-button{
   @extend %button;
   &:hover{
     letter-spacing: 2px;
@@ -22,11 +22,22 @@
   }
 }
 
-.button3{
+.blue-button{
   @extend %button;
   &:hover{
     letter-spacing: 2px;
     background: $blue;
     color: $white;
+  }
+}
+
+.sign-in-button{
+  @extend %login-sizing;
+  width: 25%;
+  background: rgba($blue, 0.5);
+  transition: all 300ms;
+  &:hover{
+    letter-spacing: 2px;
+    background: rgba($blue, 0.7);
   }
 }

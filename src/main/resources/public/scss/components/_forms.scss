@@ -1,13 +1,13 @@
 //Login Styles
 
-.login-form{
+.main-form{
+  @include margin(2em null 2em null);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  margin-top: 2.5em;
 
-  .login-field{
+  .maroon-field{
     @extend %login-sizing;
     background: rgba($maroon, 0.5);
     transition: all 300ms;
@@ -16,7 +16,7 @@
       background: rgba($maroon, 0.7);
     }
   }
-  .password-field{
+  .lavender-field{
     @extend %login-sizing;
     background: rgba($lavender, 0.5);
     transition: all 300ms;
@@ -25,21 +25,20 @@
       background: rgba($lavender, 0.7);
     }
   }
-  .sign-in-button{
+  .blue-field{
     @extend %login-sizing;
-    width: 25%;
-    background: rgba($blue, 0.5);
+    background: rgba($maroon, 0.5);
     transition: all 300ms;
-    &:hover{
-      letter-spacing: 2px;
-      background: rgba($blue, 0.7);
+    &:focus{
+      outline: none;
+      background: rgba($maroon, 0.7);
     }
   }
 }
 
 //Add Restaurant/User Styles
 
-.main-form{
+.hidden-form{
   display: none;
   .info-form{
     display: flex;
@@ -64,6 +63,8 @@
     }
   }
 }
+
+//Labels
 
 .reg-label{
   font-size: 20px;
