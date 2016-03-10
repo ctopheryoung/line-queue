@@ -166,7 +166,6 @@ public class App {
       int userId = Integer.parseInt(request.params("userId"));
       User currentUser = User.find(userId);
       model.put("currentUser", currentUser);
-      model.put("allUsers", User.all());
       model.put("restaurant", restaurant);
       model.put("template", "templates/restaurant.vtl");
       return new ModelAndView(model, layout);

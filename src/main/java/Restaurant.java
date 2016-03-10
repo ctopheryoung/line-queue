@@ -1,6 +1,7 @@
 import org.sql2o.*;
 import java.util.List;
 import java.util.Date;
+import java.sql.Timestamp;
 import org.apache.commons.lang.time.DateFormatUtils;
 
 public class Restaurant {
@@ -204,13 +205,15 @@ public class Restaurant {
   //   }
   // }
   //
-  public Date getTimeStamp() {
+  public Timestamp getTime() {
     String sql = "SELECT modified FROM check_ins WHERE id = :id";
-    try (Connection con = DB.sql2o.open()) {
+    try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
-            .addParameter("id", id)
-            .executeScalar(Date.class);
+        .addParameter("id", id)
+        .executeScalar(Timestamp.class);
+
     }
+
   }
 
   // public String getTimeStamp() {
