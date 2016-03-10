@@ -1,17 +1,17 @@
 .title{
   text-align: center;
   font-family: 'Lobster Two', cursive;
-  font-size: 2em;
-  margin: 10px;
+  font-size: $lg-font;
+  margin: 1.5em;
 }
 
 .title-secondary{
-  font-size: 1.5em;
+  font-size: $med-lg-font;
   font-family: 'Lobster Two', cursive;
-  margin-top: 1em;
+  margin: 1.5em;
 }
 
 .sub-title{
-  font-size: 16px;
+  font-size: $reg-font;
   font-weight: bold;
 }

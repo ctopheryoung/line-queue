@@ -8,15 +8,22 @@
 <div class="navbar">
   <i class="fa fa-bars"></i>
   <ul class="main-menu">
-    <li><a href='/new-user'>sign up</a></li>
-    <li><a href="/add-restaurant">add restaurant</a></li>
-    <li><a href="#">users</a></li>
+    <li>Logged in as: $currentUser.getUserName()</li>
+    <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
+    <li><a href="/$currentUser.getId()/add-restaurant">add restaurant</a></li>
+    <li><a href='/'>Log Out</a></li>
   </ul>
 </div>
 
 <div class="wrapper">
-
   <h1 class="title">Welcome, $currentUser.getUserName().</h1>
+
+  <a class="lavender-button button-lg" href="/restaurants">Check the Q</a>
+
+  <h2 class="title-secondary">Report a line</h2>
+
+  <i class="fa fa-chevron-down"></i>
+  <i class="fa fa-chevron-up"></i>
 
   <button type="button" class="button2 button"><a href="/$currentUser.getId()/restaurants">Check line lengths</a></button>
 
@@ -55,7 +62,7 @@
   </form>
 
   #if($currentUser.getRestaurants())
-  <p>Lines you have reported:</p>
+  <h2 class="title-secondary">Your Q</h2>
   <ul class="main-list">
     #foreach($restaurant in $currentUser.getRestaurants())
     <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
@@ -63,7 +70,4 @@
   </ul>
   #end
 
-  <p>Logged in as: $currentUser.getUserName()</p>
-  <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
-  <p><a href='/'>Log Out</a></p>
 </div>

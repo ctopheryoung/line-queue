@@ -59,6 +59,7 @@ body::-webkit-scrollbar {
   display: none; }
 
 a {
+  color: #f4f4f4;
   text-decoration: none; }
 
 .wrapper {
@@ -77,31 +78,21 @@ a {
 .fa-chevron-up {
   display: none; }
 
-.button1, .button2, .button3 {
+.maroon-button, .lavender-button, .blue-button {
   width: 60%;
   background: none;
   transition: all 300ms;
   color: #f4f4f4;
   background: rgba(105, 105, 105, 0.3);
   margin: 5px; }
-  .button1 a, .button2 a, .button3 a {
-    color: #f4f4f4; }
 
-.login-form .login-field, .login-form .password-field, .login-form .sign-in-button {
+.sign-in-button, .maroon-field, .lavender-field, .blue-field {
   border: none;
   width: 60%;
   padding: 10px;
   margin: 5px;
   color: #f4f4f4;
   text-align: center;
-  text-shadow: 1px 1px #212121;
-  letter-spacing: 1px; }
-
-.main-form .info-form input, .main-form .info-form button {
-  border: none;
-  padding: 10px;
-  margin: 5px;
-  color: #f4f4f4;
   text-shadow: 1px 1px #212121;
   letter-spacing: 1px; }
 
@@ -140,15 +131,15 @@ a {
   text-align: center;
   font-family: 'Lobster Two', cursive;
   font-size: 2em;
-  margin: 10px; }
+  margin: 1.5em; }
 
 .title-secondary {
   font-size: 1.5em;
   font-family: 'Lobster Two', cursive;
-  margin-top: 1em; }
+  margin: 1.5em; }
 
 .sub-title {
-  font-size: 16px;
+  font-size: 1em;
   font-weight: bold; }
 
 .logo {
@@ -224,77 +215,90 @@ a {
   padding: 10px;
   letter-spacing: 1px; }
 
-.button1:hover {
+.button-lg {
+  border: none;
+  padding: 20px;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  font-size: 1.5em;
+  font-family: 'Lobster Two', cursive; }
+
+.maroon-button:hover {
   letter-spacing: 2px;
   background: #b0284c;
   color: #f4f4f4; }
 
-.button2:hover {
+.lavender-button:hover {
   letter-spacing: 2px;
   background: #8f48a8;
   color: #f4f4f4; }
 
-.button3:hover {
+.blue-button:hover {
   letter-spacing: 2px;
   background: #4187b4;
   color: #f4f4f4; }
 
-.login-form {
+.sign-in-button {
+  width: 25%;
+  background: rgba(65, 135, 180, 0.5);
+  transition: all 300ms; }
+  .sign-in-button:hover {
+    letter-spacing: 2px;
+    background: rgba(65, 135, 180, 0.7); }
+
+.main-form {
+  margin-top: 2em;
+  margin-bottom: 2em;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: column;
-  margin-top: 2.5em; }
-  .login-form .login-field {
-    background: rgba(176, 40, 76, 0.5);
-    transition: all 300ms; }
-    .login-form .login-field:focus {
-      outline: none;
-      background: rgba(176, 40, 76, 0.7); }
-  .login-form .password-field {
-    background: rgba(143, 72, 168, 0.5);
-    transition: all 300ms; }
-    .login-form .password-field:focus {
-      outline: none;
-      background: rgba(143, 72, 168, 0.7); }
-  .login-form .sign-in-button {
-    width: 25%;
-    background: rgba(65, 135, 180, 0.5);
-    transition: all 300ms; }
-    .login-form .sign-in-button:hover {
-      letter-spacing: 2px;
-      background: rgba(65, 135, 180, 0.7); }
+  flex-flow: column; }
 
-.main-form {
+.maroon-field {
+  background: rgba(176, 40, 76, 0.5);
+  transition: all 300ms; }
+  .maroon-field:focus {
+    outline: none;
+    background: rgba(176, 40, 76, 0.7); }
+
+.lavender-field {
+  background: rgba(143, 72, 168, 0.5);
+  transition: all 300ms; }
+  .lavender-field:focus {
+    outline: none;
+    background: rgba(143, 72, 168, 0.7); }
+
+.blue-field {
+  background: rgba(176, 40, 76, 0.5);
+  transition: all 300ms; }
+  .blue-field:focus {
+    outline: none;
+    background: rgba(176, 40, 76, 0.7); }
+
+.hidden-form {
   display: none; }
-  .main-form .info-form {
+  .hidden-form .info-form {
     display: flex;
     flex-flow: column wrap;
     width: 100%;
     align-items: center;
     margin-top: 0.5em; }
-    .main-form .info-form label {
+    .hidden-form .info-form label {
       letter-spacing: 1px;
-      font-size: 12px;
+      font-size: 1em;
       margin: 5px; }
-    .main-form .info-form input {
-      width: 80%;
-      background: rgba(143, 72, 168, 0.5); }
-    .main-form .info-form button {
-      width: 50%;
-      background: rgba(176, 40, 76, 0.5); }
 
 .reg-label {
-  font-size: 20px;
-  margin-top: 15px; }
+  font-size: 1em;
+  margin: 1em; }
 
 .sm-label {
-  font-size: 12px; }
+  font-size: 0.75em; }
 
 .dropdown-field {
   background: rgba(176, 40, 76, 0.5);
   color: #f4f4f4;
-  font-size: 18px; }
+  font-size: 1em; }
 
 .inline-dropdown {
   display: flex;
