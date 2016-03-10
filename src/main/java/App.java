@@ -36,7 +36,6 @@ public class App {
       User currentUser = User.login(username);
       model.put("password", password);
       model.put("currentUser", currentUser);
-      model.put("allRestaurants", Restaurant.all());
       model.put("template", "templates/welcome.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -173,7 +172,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/restaurants/:id/edit", (request, response) -> {
+    get("/:userId/restaurants/:id/edit", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       Restaurant restaurant = Restaurant.find(id);
