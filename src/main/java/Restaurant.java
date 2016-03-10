@@ -204,7 +204,7 @@ public class Restaurant {
           .executeScalar(Integer.class);
     }
   }
-  
+
   public Timestamp getTime() {
     String sql = "SELECT modified FROM check_ins WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
@@ -212,8 +212,9 @@ public class Restaurant {
         .addParameter("id", id)
         .executeScalar(Timestamp.class);
 
-    } THIS WORKS!
 
+      }
+      //  THIS WORKS!
   }
 
   // public Timestamp getTime() {
