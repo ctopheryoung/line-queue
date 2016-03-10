@@ -1,0 +1,59 @@
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
+
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li><a href='/new-user'>sign up</a></li>
+    <li><a href="/add-restaurant">add restaurant</a></li>
+    <li><a href="#">users</a></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+
+  <h1 class="title">Welcome, $currentUser.getUserName().</h1>
+
+    <form class="login-form" action='/add-restaurant' method='post'>
+
+      <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
+
+        <h2 class="title-secondary">Report a line</h2>
+
+        <button type="button" class="button2 button"><a href="/restaurants">Check line lengths</a></button>
+
+      <div class="inline-dropdown">
+        <label class="reg-label" for="restaurant_id">Select</label>
+        <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
+          #foreach($restaurant in $allRestaurants)
+          <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
+          #end
+        </select>
+      </div>
+
+      <label class="reg-label" for="line_length">Line length <br> <span class="sm-label">(estimate number of people)</span></label>
+      <input class="password-field" id="line_length" name="line_length" type="text" required>
+
+      <button class="button3 button" type='submit'>Report</button>
+
+    </form>
+
+  #if($currentUser.getRestaurants())
+  <p>Lines you have reported:</p>
+  <ul class="main-list">
+    #foreach($restaurant in $currentUser.getRestaurants())
+    <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+    #end
+  </ul>
+  #end
+  <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
+  #end
+
+
+  <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
+  <p><a href='/'>Log Out</a></p>
+</div>

@@ -1,11 +1,35 @@
 restaurants.vtl
+ - Logged in as: $currentUser.getUserName()
 
-<h1>Restaurant List</h1>
-<h3>Click a restaurant to see recently reported line lengths.</h3>
+<h1>Restaurants</h1>
+<h3>Click a restaurant to see details and recently reported line lengths.</h3>
 
 #foreach ($restaurant in $restaurants)
-  <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+<li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
 #end
 
-<p><a href="/new-restaurant">Add a new restaurant.</a></p>
-<p><a href='/'>Home</a></p>
+<h3>Add a Restaurant:</h3>
+<form action="/$currentUser.getId()/restaurants" method="post">
+  <label for="restaurant_name">Restaurant Name:</label>
+  <input id="restaurant_name" name="restaurant_name" type="text" required>
+
+  <label for="phone">Phone Number:</label>
+  <input id="phone" name="phone" type="text" required>
+
+  <div class="form-group">
+    <label for="street">Street Address:</label>
+    <input id="street" name="street" type="text" required>
+
+    <label for="city">City:</label>
+    <input id="city" name="city" type="text" required>
+
+    <label for="state">State:</label>
+    <input id="state" name="state" type="text" required>
+
+    <label for="zip">Zip:</label>
+    <input id="zip" name="zip" type="text" required>
+  </div>
+  <button type="submit">Add Restaurant</button>
+</form>
+
+<p><a href="/$currentUser.getId()/home">Home</a></p>

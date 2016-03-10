@@ -2,7 +2,7 @@
 
 #### March, 2016
 
-#### By Chris Young, Trevor Elvey, Vigilio Ramon de la Cruz & Riley Starnes
+#### By Chris Young, Trevor Elvey, Ramon de la Cruz & Riley Starnes
 
 ## Description
 
@@ -10,4 +10,4 @@ A Java app that provides a database of restaurants with the ability to report a 
 
 ## Technologies Used
 
-Java, Spark, JUnit, FluentLenium, Velocity, Bootstrap
+Java, Spark, JUnit, FluentLenium, Velocity
