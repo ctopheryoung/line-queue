@@ -1,0 +1,31 @@
+user.vtl
+- Logged in as: $currentUser.getUserName()
+
+
+<h1>Hello, $currentUser.getUserName().</h1>
+  <h3>You can...</h3>
+  <h4><a href="/$currentUser.getId()/restaurants">Check a line length.</a></h4>
+  <h4>Report a line length:</h4>
+  <form action='/add-restaurant' method='post'>
+    <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
+    <label for="restaurant_id">Select a restaurant</label>
+    <select id='restaurant_id' name='restaurant_id' type='text'>
+      #foreach($restaurant in $allRestaurants)
+      <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
+      #end
+    </select>
+    <label for="line_length">Estimated number of people in line:</label>
+    <input id="line_length" name="line_length" type="text" required>
+    <button type='submit'>Report</button>
+  </form>
+  <p>Don't see the restaurant you are looking for? <a href="/$currentUser.getId()/add-restaurant">Add it now.</a></p>
+  #if($currentUser.getRestaurants())
+    <p>Lines you have reported:</p>
+    <ul>
+      #foreach($restaurant in $currentUser.getRestaurants())
+        <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+      #end
+    </ul>
+  #end
+  <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
+  <p><a href='/'>Log Out</a></p>

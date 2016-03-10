@@ -7,15 +7,14 @@ public class User {
   private int id;
   private String user_name;
   private String password;
-
+  private int score;
   // private String permission;
-  private int score = 0;
 
   //CONSTRUCTOR//
   public User(String user_name, String password) {
     this.user_name = user_name;
     this.password = password;
-
+    this.score = 0;
 
   } //PUT IN CONSTRUCTOR: , String permission
     //    this.permission = permission;
@@ -87,7 +86,7 @@ public class User {
 
   public static User find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT id, password FROM Users where id=:id";
+      String sql = "SELECT id, user_name, password, score FROM users where id=:id";
       User user = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetchFirst(User.class);
@@ -115,14 +114,12 @@ public class User {
 
   //UPDATE//
   public void update(String newUserName, String newPassword) {
-    this.user_name = newUserName;
-    this.password = newPassword;
-    String sql = "UPDATE users SET user_name = :newUserName AND password = :newPassword WHERE id=:id";
+    String sql = "UPDATE users SET user_name = :newUserName, password = :newPassword WHERE id=:id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
       .addParameter("newUserName", newUserName)
       .addParameter("newPassword", newPassword)
-      .addParameter("id", this.id)
+      .addParameter("id", id)
       .executeUpdate();
     }
   }
