@@ -7,10 +7,6 @@
   flex-flow: column;
   margin-top: 2.5em;
 
-  label{
-    padding: 20px;
-  }
-
   .login-field{
     @extend %login-sizing;
     background: rgba($maroon, 0.5);
@@ -69,18 +65,24 @@
   }
 }
 
+.reg-label{
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.sm-label{
+  font-size: 12px;
+}
+
 //Dropdown Styles
 
-.box-cheese{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:30px;
-  width: 60%;
-  background: rgba($maroon, 0.5);
-}
 .dropdown-field{
-  @extend %form-sizing;
-  background: none;
-  border-radius: 0px;
+  background: rgba($maroon, 0.5);
+  color: $white;
+  font-size: 18px;
+}
+
+.inline-dropdown{
+  display: flex;
+  flex-flow: column wrap;
 }

@@ -81,7 +81,9 @@ a {
   width: 60%;
   background: none;
   transition: all 300ms;
-  color: #f4f4f4; }
+  color: #f4f4f4;
+  background: rgba(105, 105, 105, 0.3);
+  margin: 5px; }
   .button1 a, .button2 a, .button3 a {
     color: #f4f4f4; }
 
@@ -95,7 +97,7 @@ a {
   text-shadow: 1px 1px #212121;
   letter-spacing: 1px; }
 
-.main-form .info-form input, .main-form .info-form button, .dropdown-field {
+.main-form .info-form input, .main-form .info-form button {
   border: none;
   padding: 10px;
   margin: 5px;
@@ -146,9 +148,8 @@ a {
   margin-top: 1em; }
 
 .sub-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px; }
+  font-size: 16px;
+  font-weight: bold; }
 
 .logo {
   display: flex;
@@ -244,8 +245,6 @@ a {
   justify-content: center;
   flex-flow: column;
   margin-top: 2.5em; }
-  .login-form label {
-    padding: 20px; }
   .login-form .login-field {
     background: rgba(176, 40, 76, 0.5);
     transition: all 300ms; }
@@ -285,17 +284,21 @@ a {
       width: 50%;
       background: rgba(176, 40, 76, 0.5); }
 
-.box-cheese {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
-  width: 60%;
-  background: rgba(176, 40, 76, 0.5); }
+.reg-label {
+  font-size: 20px;
+  margin-top: 15px; }
+
+.sm-label {
+  font-size: 12px; }
 
 .dropdown-field {
-  background: none;
-  border-radius: 0px; }
+  background: rgba(176, 40, 76, 0.5);
+  color: #f4f4f4;
+  font-size: 18px; }
+
+.inline-dropdown {
+  display: flex;
+  flex-flow: column wrap; }
 
 .hero {
   height: 100vh;
