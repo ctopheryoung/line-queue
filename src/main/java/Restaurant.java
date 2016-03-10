@@ -1,5 +1,7 @@
 import org.sql2o.*;
 import java.util.List;
+import java.util.Date;
+import org.apache.commons.lang.time.DateFormatUtils;
 
 public class Restaurant {
   private int id;
@@ -193,21 +195,30 @@ public class Restaurant {
     }
   }
 
-  public Integer getLineLength() {
-    String sql = "SELECT line_length FROM check_ins WHERE id = :id";
+  // public Integer getLineLength() {
+  //   String sql = "SELECT line_length FROM check_ins WHERE id = :id";
+  //   try (Connection con = DB.sql2o.open()) {
+  //     return con createQuery(sql)
+  //         .addParameter("id", id)
+  //         .executeScalar(Integer.class);
+  //   }
+  // }
+  //
+  public Date getTimeStamp() {
+    String sql = "SELECT modified FROM check_ins WHERE id = :id";
     try (Connection con = DB.sql2o.open()) {
-      return con createQuery(sql)
-          .addParameter("id", id)
-          .executeScalar(Integer.class);
+      return con.createQuery(sql)
+            .addParameter("id", id)
+            .executeScalar(Date.class);
     }
   }
 
-  public Integer getTimeStamp() {
-    String sql = "SELECT modified FROM check_ins WHERE id = :id";
-    try (Connection con = DB.sql2o.open()) {
-      return con createQuery(sql)
-            .addParameter("id", id)
-            .executeScalar(Integer.class);
-    }
-  }
+  // public String getTimeStamp() {
+  //   String sql = "SELECT modified FROM check_ins WHERE id = :id";
+  //   try (Connection con = DB.sql2o.open()) {
+  //     return (String)con.createQuery(sql)
+  //           .addParameter("id", id)
+  //           .executeScalar(Date.class);
+  //   }
+  // }
 }
