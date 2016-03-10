@@ -86,21 +86,13 @@ a {
   background: rgba(105, 105, 105, 0.3);
   margin: 5px; }
 
-.sign-in-button, .main-form .maroon-field, .main-form .lavender-field, .main-form .blue-field {
+.sign-in-button, .maroon-field, .lavender-field, .blue-field {
   border: none;
   width: 60%;
   padding: 10px;
   margin: 5px;
   color: #f4f4f4;
   text-align: center;
-  text-shadow: 1px 1px #212121;
-  letter-spacing: 1px; }
-
-.hidden-form .info-form input, .hidden-form .info-form button {
-  border: none;
-  padding: 10px;
-  margin: 5px;
-  color: #f4f4f4;
   text-shadow: 1px 1px #212121;
   letter-spacing: 1px; }
 
@@ -261,24 +253,27 @@ a {
   align-items: center;
   justify-content: center;
   flex-flow: column; }
-  .main-form .maroon-field {
-    background: rgba(176, 40, 76, 0.5);
-    transition: all 300ms; }
-    .main-form .maroon-field:focus {
-      outline: none;
-      background: rgba(176, 40, 76, 0.7); }
-  .main-form .lavender-field {
-    background: rgba(143, 72, 168, 0.5);
-    transition: all 300ms; }
-    .main-form .lavender-field:focus {
-      outline: none;
-      background: rgba(143, 72, 168, 0.7); }
-  .main-form .blue-field {
-    background: rgba(176, 40, 76, 0.5);
-    transition: all 300ms; }
-    .main-form .blue-field:focus {
-      outline: none;
-      background: rgba(176, 40, 76, 0.7); }
+
+.maroon-field {
+  background: rgba(176, 40, 76, 0.5);
+  transition: all 300ms; }
+  .maroon-field:focus {
+    outline: none;
+    background: rgba(176, 40, 76, 0.7); }
+
+.lavender-field {
+  background: rgba(143, 72, 168, 0.5);
+  transition: all 300ms; }
+  .lavender-field:focus {
+    outline: none;
+    background: rgba(143, 72, 168, 0.7); }
+
+.blue-field {
+  background: rgba(176, 40, 76, 0.5);
+  transition: all 300ms; }
+  .blue-field:focus {
+    outline: none;
+    background: rgba(176, 40, 76, 0.7); }
 
 .hidden-form {
   display: none; }
@@ -290,18 +285,12 @@ a {
     margin-top: 0.5em; }
     .hidden-form .info-form label {
       letter-spacing: 1px;
-      font-size: 0.85em;
+      font-size: 1em;
       margin: 5px; }
-    .hidden-form .info-form input {
-      width: 80%;
-      background: rgba(143, 72, 168, 0.5); }
-    .hidden-form .info-form button {
-      width: 50%;
-      background: rgba(176, 40, 76, 0.5); }
 
 .reg-label {
   font-size: 1em;
-  margin-top: 15px; }
+  margin: 1em; }
 
 .sm-label {
   font-size: 0.75em; }

@@ -25,22 +25,24 @@
   <i class="fa fa-chevron-up"></i>
 
     <form class="hidden-form" action='/add-restaurant' method='post'>
-      <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
+      <!-- <div class="info-form"> -->
+        <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
 
-      <div class="inline-dropdown">
-        <label class="reg-label" for="restaurant_id">Select</label>
-        <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
-          #foreach($restaurant in $allRestaurants)
-          <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
-          #end
-        </select>
-      </div>
+        <div class="inline-dropdown">
+          <label class="reg-label" for="restaurant_id">Select</label>
+          <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
+            #foreach($restaurant in $allRestaurants)
+            <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
+            #end
+          </select>
+        </div>
 
-      <label class="reg-label" for="line_length">Line length <br> <span class="sm-label">(estimate number of people)</span></label>
-      <input class="lavender-field" id="line_length" name="line_length" type="text" required>
+        <label class="reg-label" for="line_length">Line length<br><span class="sm-label">(estimate number of people)</span></label>
 
-      <button class="sign-in-button" type='submit'>Report</button>
+        <input class="lavender-field" id="line_length" name="line_length" type="text" required>
 
+        <button class="blue-button button" type='submit'>Report</button>
+      <!-- </div> -->
     </form>
 
   #if($currentUser.getRestaurants())

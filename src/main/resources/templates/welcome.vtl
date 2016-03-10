@@ -3,9 +3,11 @@ user.vtl
 
 
 #if($password.equals($currentUser.getPassword()))
- <h1>Success!</h1>
- <h3>Redirecting to account page.</h3>
- <meta http-equiv="refresh" content="3; url=/$currentUser.getId()/home" />
+<div class="wrapper">
+  <h1 class="title">Success!</h1>
+  <h3 class="title-secondary">Redirecting to account page.</h3>
+  <meta http-equiv="refresh" content="3; url=/$currentUser.getId()/home" />
+</div>
 #end
 
 #if(!$password.equals($currentUser.getPassword()))
