@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.sql.Timestamp;
 import org.sql2o.*;
 
 public class User {
@@ -86,7 +87,7 @@ public class User {
 
   public static User find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM Users where id=:id";
+      String sql = "SELECT id, password FROM Users where id=:id";
       User user = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetchFirst(User.class);
@@ -135,10 +136,11 @@ public class User {
 
   public void addRestaurant(Restaurant restaurant) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
+      String sql = "INSERT INTO check_ins (restaurant_id, user_id, line_length) VALUES (:restaurant_id, :user_id, :line_length)";
       con.createQuery(sql)
       .addParameter("restaurant_id", restaurant.getId())
       .addParameter("user_id", this.getId())
+      .addParameter("line_length", 3)
       .executeUpdate();
     }
   }

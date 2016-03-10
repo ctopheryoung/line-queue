@@ -1,5 +1,7 @@
 import org.sql2o.*;
 import java.util.List;
+import java.util.Date;
+import org.apache.commons.lang.time.DateFormatUtils;
 
 public class Restaurant {
   private int id;
@@ -80,9 +82,9 @@ public class Restaurant {
              this.getStreet().equals(newRestaurant.getStreet()) &&
              this.getCity().equals(newRestaurant.getCity()) &&
              this.getState().equals(newRestaurant.getState()) &&
-             this.getZip().equals(newRestaurant.getZip()) &&
-             this.getLineAverage() == (newRestaurant.getLineAverage()) &&
-             this.getPhoto().equals(newRestaurant.getPhoto());
+             this.getZip().equals(newRestaurant.getZip());
+            //  this.getLineAverage() == (newRestaurant.getLineAverage()) &&
+            //  this.getPhoto().equals(newRestaurant.getPhoto());
              //********ADD NEW CATS HERE**************
     }
   }
@@ -90,7 +92,7 @@ public class Restaurant {
 //CREATE
 
   public void save() {
-    String sql = "INSERT INTO restaurants (restaurant_name, phone, street, city, state, zip, line_average, photo) VALUES (:restaurant_name, :phone, :street, :city, :state, :zip, :line_average, :photo)";
+    String sql = "INSERT INTO restaurants (restaurant_name, phone, street, city, state, zip) VALUES (:restaurant_name, :phone, :street, :city, :state, :zip)";
     try(Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
           .addParameter("restaurant_name", restaurant_name)
@@ -99,8 +101,8 @@ public class Restaurant {
           .addParameter("city", city)
           .addParameter("state", state)
           .addParameter("zip", zip)
-          .addParameter("line_average", line_average)
-          .addParameter("photo", photo)
+          // .addParameter("line_average", line_average)
+          // .addParameter("photo", photo)
           .executeUpdate()
           .getKey();
     }
@@ -163,6 +165,8 @@ public class Restaurant {
     }
   }
 
+
+//ADD
   public void addUser(User user) {
       String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
       try(Connection con = DB.sql2o.open()) {
@@ -178,7 +182,7 @@ public class Restaurant {
   }
 
 
-
+//ADVANCED GETTERS
   public List<User> getUsers() {
     String sql = "SELECT users.* FROM restaurants " +
                  "JOIN check_ins ON (restaurants.id = check_ins.restaurant_id) " +
@@ -191,4 +195,30 @@ public class Restaurant {
     }
   }
 
+  // public Integer getLineLength() {
+  //   String sql = "SELECT line_length FROM check_ins WHERE id = :id";
+  //   try (Connection con = DB.sql2o.open()) {
+  //     return con createQuery(sql)
+  //         .addParameter("id", id)
+  //         .executeScalar(Integer.class);
+  //   }
+  // }
+  //
+  public Date getTimeStamp() {
+    String sql = "SELECT modified FROM check_ins WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+            .addParameter("id", id)
+            .executeScalar(Date.class);
+    }
+  }
+
+  // public String getTimeStamp() {
+  //   String sql = "SELECT modified FROM check_ins WHERE id = :id";
+  //   try (Connection con = DB.sql2o.open()) {
+  //     return (String)con.createQuery(sql)
+  //           .addParameter("id", id)
+  //           .executeScalar(Date.class);
+  //   }
+  // }
 }

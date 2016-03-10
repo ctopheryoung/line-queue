@@ -10,14 +10,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -25,21 +25,53 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: insert_into_modified_column(); Type: FUNCTION; Schema: public; Owner: Guest
+--
+
+CREATE FUNCTION insert_into_modified_column() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    NEW.modified = now();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.insert_into_modified_column() OWNER TO "Guest";
+
+--
+-- Name: update_modified_column(); Type: FUNCTION; Schema: public; Owner: Guest
+--
+
+CREATE FUNCTION update_modified_column() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    NEW.modified = now();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_modified_column() OWNER TO "Guest";
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: check_ins; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: check_ins; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
 --
 
 CREATE TABLE check_ins (
     id integer NOT NULL,
     restaurant_id integer,
     user_id integer,
-    check_in timestamp without time zone,
     in_line boolean,
-    line_length integer
+    line_length integer,
+    modified timestamp without time zone
 );
 
 
@@ -67,7 +99,7 @@ ALTER SEQUENCE check_ins_id_seq OWNED BY check_ins.id;
 
 
 --
--- Name: restaurants; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: restaurants; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
 --
 
 CREATE TABLE restaurants (
@@ -107,15 +139,15 @@ ALTER SEQUENCE restaurants_id_seq OWNED BY restaurants.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
 --
 
 CREATE TABLE users (
     id integer NOT NULL,
     user_name character varying,
     score integer,
-    password character varying,
-    permission character varying
+
+    password character varying
 );
 
 
@@ -167,7 +199,9 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: check_ins; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
+
 COPY check_ins (id, restaurant_id, user_id, check_in, in_line, line_length) FROM stdin;
+
 \.
 
 
@@ -175,7 +209,7 @@ COPY check_ins (id, restaurant_id, user_id, check_in, in_line, line_length) FROM
 -- Name: check_ins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('check_ins_id_seq', 1, false);
+SELECT pg_catalog.setval('check_ins_id_seq', 4, true);
 
 
 --
@@ -199,9 +233,11 @@ SELECT pg_catalog.setval('restaurants_id_seq', 2, true);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY users (id, user_name, score, password, permission) FROM stdin;
-1	test	\N	test	\N
-2	test	\N	test	\N
+
+COPY users (id, user_name, score, password) FROM stdin;
+1	test	\N	test
+2	test	\N	test
+
 \.
 
 
@@ -213,7 +249,7 @@ SELECT pg_catalog.setval('users_id_seq', 2, true);
 
 
 --
--- Name: check_ins_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: check_ins_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
 --
 
 ALTER TABLE ONLY check_ins
@@ -221,7 +257,7 @@ ALTER TABLE ONLY check_ins
 
 
 --
--- Name: restaurants_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: restaurants_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
 --
 
 ALTER TABLE ONLY restaurants
@@ -229,7 +265,7 @@ ALTER TABLE ONLY restaurants
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
 --
 
 ALTER TABLE ONLY users
@@ -237,6 +273,21 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: insert_into_check_ins; Type: TRIGGER; Schema: public; Owner: Guest
+--
+
+CREATE TRIGGER insert_into_check_ins BEFORE INSERT ON check_ins FOR EACH ROW EXECUTE PROCEDURE insert_into_modified_column();
+
+
+--
+-- Name: update_check_in; Type: TRIGGER; Schema: public; Owner: Guest
+--
+
+CREATE TRIGGER update_check_in BEFORE UPDATE ON check_ins FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+
+
+--
+
 -- Name: public; Type: ACL; Schema: -; Owner: epicodus
 --
 
@@ -249,4 +300,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
