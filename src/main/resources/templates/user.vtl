@@ -22,10 +22,10 @@
 
       <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
 
-        <h2 class="title-secondary">Report a line</h2>
-
         <button type="button" class="button2 button"><a href="/restaurants">Check line lengths</a></button>
 
+        <h2 class="title-secondary">Report a line</h2>
+        
       <div class="inline-dropdown">
         <label class="reg-label" for="restaurant_id">Select</label>
         <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
@@ -50,10 +50,6 @@
     #end
   </ul>
   #end
-  <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
-  #end
-
-
   <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
   <p><a href='/'>Log Out</a></p>
 </div>
