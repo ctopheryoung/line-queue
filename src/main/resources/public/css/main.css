@@ -88,7 +88,7 @@ a {
 
 .sign-in-button, .maroon-field, .lavender-field, .blue-field {
   border: none;
-  width: 60%;
+  width: 80%;
   padding: 10px;
   margin: 5px;
   color: #f4f4f4;
@@ -253,6 +253,12 @@ a {
   align-items: center;
   justify-content: center;
   flex-flow: column; }
+  .main-form .info-form {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    align-items: center;
+    margin-top: 0.5em; }
 
 .maroon-field {
   background: rgba(176, 40, 76, 0.5);
@@ -269,11 +275,11 @@ a {
     background: rgba(143, 72, 168, 0.7); }
 
 .blue-field {
-  background: rgba(176, 40, 76, 0.5);
+  background: rgba(65, 135, 180, 0.5);
   transition: all 300ms; }
   .blue-field:focus {
     outline: none;
-    background: rgba(176, 40, 76, 0.7); }
+    background: rgba(65, 135, 180, 0.7); }
 
 .hidden-form {
   display: none; }
@@ -290,7 +296,7 @@ a {
 
 .reg-label {
   font-size: 1em;
-  margin: 1em; }
+  margin: 0.5em; }
 
 .sm-label {
   font-size: 0.75em; }
