@@ -1,12 +1,31 @@
 user-edit.vtl
 
-<h1>Edit Account Details</h1>
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
 
-<form action="/edit-user" method="post">
-  <input  value="$user.getId()" type="hidden" name="userId" id="userId">
-  <label for="username">Username:</label>
-  <input required value="$user.getUserName()" type="text" class="form-control" name="username" id="username">
-  <label for="password">Username:</label>
-  <input required value="$user.getPassword()" type="password" class="form-control" name="password" id="password">
-  <button type="submit" class="btn btn-info">Save</button>
-</form>
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li><a href="/$currentUser.getId()/home">Logged in as: $currentUser.getUserName()</a></li>
+    <li><a href='/'>Log Out</a></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+  <h1 class="title">Edit Account</h1>
+
+  <form class="main-form" action="/edit-user" method="post">
+    <div class="info-form">
+      <input  value="$user.getId()" type="hidden" name="userId" id="userId">
+      <label for="username">Username</label>
+      <input class="lavender-field" required value="$user.getUserName()" type="text" class="form-control" name="username" id="username">
+      <label for="password">Password</label>
+      <input class="maroon-field" required value="$user.getPassword()" type="password" class="form-control" name="password" id="password">
+      <button class="blue-button button" type="submit" class="btn btn-info">Save</button>
+    </div>
+  </form>
+</div>
