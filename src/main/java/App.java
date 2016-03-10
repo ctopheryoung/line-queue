@@ -71,7 +71,7 @@ public class App {
       String password = request.queryParams("password");
       User user = User.find(id);
       user.update(username, password);
-      response.redirect("/");
+      response.redirect("/"+id+"/home");
       return null;
     });
 
@@ -109,6 +109,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       User user = User.find(id);
+      model.put("currentUser", user)
       model.put("user", user);
       model.put("template", "templates/user-edit.vtl");
       return new ModelAndView(model, layout);
