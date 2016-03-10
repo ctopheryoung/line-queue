@@ -1,7 +1,10 @@
 %button{
-  width: 35%;
-  background: $white;
+  width: 60%;
+  background: none;
   transition: all 300ms;
+  a{
+    color: $white;
+  }
 }
 
 %login-sizing{

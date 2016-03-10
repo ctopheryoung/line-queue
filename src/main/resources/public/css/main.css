@@ -61,16 +61,12 @@ body::-webkit-scrollbar {
 a {
   text-decoration: none; }
 
-.container {
-  width: 75%;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: flex-start; }
-
 .button1, .button2, .button3 {
-  width: 35%;
-  background: #f4f4f4;
+  width: 60%;
+  background: none;
   transition: all 300ms; }
+  .button1 a, .button2 a, .button3 a {
+    color: #f4f4f4; }
 
 .login-form .login-field, .login-form .password-field, .login-form .sign-in-button {
   border: none;
@@ -195,17 +191,17 @@ a {
   letter-spacing: 1px; }
 
 .button1:hover {
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   background: #b0284c;
   color: #f4f4f4; }
 
 .button2:hover {
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   background: #8f48a8;
   color: #f4f4f4; }
 
 .button3:hover {
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   background: #4187b4;
   color: #f4f4f4; }
 

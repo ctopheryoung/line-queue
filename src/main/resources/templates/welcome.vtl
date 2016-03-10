@@ -1,9 +1,25 @@
 user.vtl
 
-#if($password.equals($currentUser.getPassword()))
-<h1>Welcome, $currentUser.getUserName().</h1>
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
 
-  <h4><a href="/restaurants">Check a line length.</a></h4>
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li><a href="#">sign up</a></li>
+    <li><a href="#">restaurants</a></li>
+    <li><a href="#">users</a></li>
+  </ul>
+</div>
+<div class="wrapper">
+  #if($password.equals($currentUser.getPassword()))
+  <h1 class="title">Welcome, $currentUser.getUserName().</h1>
+
+  <h4><button type="button" class="button2 button"="button"><a href="/restaurants">Check line lengths</a></button></h4>
 
   <h4>Report a line</h4>
   <form action='/add-restaurant' method='post'>
@@ -22,17 +38,18 @@ user.vtl
   <p>Don't see the restaurant you are looking for? <a href="/add-restaurant">Add it now.</a></p>
 
   #if($currentUser.getRestaurants())
-    <p>Lines you have reported:</p>
-    <ul>
-      #foreach($restaurant in $currentUser.getRestaurants())
-        <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
-      #end
-    </ul>
+  <p>Lines you have reported:</p>
+  <ul>
+    #foreach($restaurant in $currentUser.getRestaurants())
+    <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+    #end
+  </ul>
   #end
   <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
   <p><a href='/'>Home</a></p>
-#end
+  #end
 
-#if(!$password.equals($currentUser.getPassword()))
- <p>Invalid username/password combination. <a href="/">Try again.</a></p>
-#end
+  #if(!$password.equals($currentUser.getPassword()))
+  <p>Invalid username/password combination. <a href="/">Try again.</a></p>
+  #end
+</div>
