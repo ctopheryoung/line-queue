@@ -72,11 +72,10 @@ public class CheckIn {
   public Timestamp getTime() {
     String sql = "SELECT modified FROM check_ins WHERE restaurant_id = :id";
     try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql)
+      Timestamp timestamp = con.createQuery(sql)
         .addParameter("id", restaurant_id)
         .executeScalar(Timestamp.class);
-
-    }
+      }
 
   }
 }

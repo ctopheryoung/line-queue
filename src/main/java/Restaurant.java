@@ -196,26 +196,35 @@ public class Restaurant {
     }
   }
 
-  // public Integer getLineLength() {
-  //   String sql = "SELECT line_length FROM check_ins WHERE id = :id";
-  //   try (Connection con = DB.sql2o.open()) {
-  //     return con createQuery(sql)
-  //         .addParameter("id", id)
-  //         .executeScalar(Integer.class);
-  //   }
-  // }
+  public Integer getLineLength() {
+    String sql = "SELECT line_length FROM check_ins WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+          .addParameter("id", id)
+          .executeScalar(Integer.class);
+    }
+  }
   //
+  // public Timestamp getTime() {
+  //   String sql = "SELECT modified FROM check_ins WHERE id = :id";
+  //   try(Connection con = DB.sql2o.open()) {
+  //     return con.createQuery(sql)
+  //       .addParameter("id", id)
+  //       .executeScalar(Timestamp.class);
+  //
+  //   } THIS WORKS!
+  //
+  // }
+
   public Timestamp getTime() {
     String sql = "SELECT modified FROM check_ins WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql)
+      Timestamp timestamp = con.createQuery(sql)
         .addParameter("id", id)
         .executeScalar(Timestamp.class);
-
+        //PUT IN SOMETHING THAT CHANGES TIMESTAMP TO STRING IN HERE?
     }
-
   }
-
   // public String getTimeStamp() {
   //   String sql = "SELECT modified FROM check_ins WHERE id = :id";
   //   try (Connection con = DB.sql2o.open()) {
