@@ -180,7 +180,7 @@ public class Restaurant {
 
 
   public List<User> getUsers() {
-    String sql = "SELECT users.* FROM restaurants " +
+    String sql = "SELECT users.id, users.user_name, users.password FROM restaurants " +
                  "JOIN check_ins ON (restaurants.id = check_ins.restaurant_id) " +
                  "JOIN users ON (check_ins.user_id = users.id) " +
                  "WHERE restaurants.id = :id";

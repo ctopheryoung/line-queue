@@ -2,7 +2,6 @@ user.vtl
 - Logged in as: $currentUser.getUserName()
 
 
-#if($password.equals($currentUser.getPassword()))
 <h1>Hello, $currentUser.getUserName().</h1>
   <h3>You can...</h3>
   <h4><a href="/$currentUser.getId()/restaurants">Check a line length.</a></h4>
@@ -24,14 +23,9 @@ user.vtl
     <p>Lines you have reported:</p>
     <ul>
       #foreach($restaurant in $currentUser.getRestaurants())
-        <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+        <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
       #end
     </ul>
   #end
   <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
   <p><a href='/'>Log Out</a></p>
-#end
-
-#if(!$password.equals($currentUser.getPassword()))
- <p>Invalid username/password combination. <a href="/">Try again.</a></p>
-#end

@@ -1,4 +1,5 @@
 restaurants.vtl
+ - Logged in as: $currentUser.getUserName()
 
 <h1>Restaurant List</h1>
 <h3>Click a restaurant to see recently reported line lengths.</h3>
@@ -7,5 +8,4 @@ restaurants.vtl
   <li><a href="/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
 #end
 
-<p><a href="/new-restaurant">Add a new restaurant.</a></p>
-<p><a href='/'>Home</a></p>
+<p><a href="/$currentUser.getId()/home">Home</a></p>
