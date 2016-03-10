@@ -24,21 +24,34 @@
     <h2 class="title-secondary">Report a line</h2>
 
     <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
-    
+
     <div class="inline-dropdown">
-      <label class="reg-label" for="restaurant_id">Select</label>
+      <label class="reg-label" for="restaurant_id">Select Restaurant</label>
       <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
         #foreach($restaurant in $allRestaurants)
         <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
         #end
       </select>
+      <label class="reg-label" for="line_length">Line length (# of people)</label>
+      <select class="dropdown-field" id='line_length' name='line_length' type='text'>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15+">15+</option>
+      </select>
     </div>
-
-    <label class="reg-label" for="line_length">Line length <br> <span class="sm-label">(estimate number of people)</span></label>
-    <input class="password-field" id="line_length" name="line_length" type="text" required>
-
     <button class="button3 button" type='submit'>Report</button>
-
   </form>
 
   #if($currentUser.getRestaurants())
