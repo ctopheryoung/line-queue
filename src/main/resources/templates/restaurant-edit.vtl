@@ -1,4 +1,6 @@
 restaurant-edit.vtl
+- Logged in as: $currentUser.getUserName()
+
 
 <h1>Edit $restaurant.getRestaurantName():</h1>
 
@@ -22,5 +24,3 @@ restaurant-edit.vtl
   <input id="zip" name="zip" type="text" value="$restaurant.getZip()" required>
   <button type="submit" class="btn btn-info">Save</button>
 </form>
-
-<a href="/restaurants/$restaurant.getId()">Back</a>

@@ -1,8 +1,9 @@
 user-edit.vtl
 
-<h1>Edit $user.getUserName():</h1>
+<h1>Edit Account Details</h1>
 
-<form action="/welcome" method="post">
+<form action="/edit-user" method="post">
+  <input  value="$user.getId()" type="hidden" name="userId" id="userId">
   <label for="username">Username:</label>
   <input required value="$user.getUserName()" type="text" class="form-control" name="username" id="username">
   <label for="password">Username:</label>
