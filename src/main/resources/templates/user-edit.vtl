@@ -20,11 +20,11 @@ user-edit.vtl
 
   <form class="main-form" action="/edit-user" method="post">
     <div class="info-form">
-      <input  value="$user.getId()" type="hidden" name="userId" id="userId">
+      <input  value="$currentUser.getId()" type="hidden" name="userId" id="userId">
       <label for="username">Username</label>
       <input class="lavender-field" required value="$user.getUserName()" type="text" class="form-control" name="username" id="username">
       <label for="password">Password</label>
-      <input class="maroon-field" required value="$user.getPassword()" type="password" class="form-control" name="password" id="password">
+      <input class="maroon-field" required value="$currentUser.getPassword()" type="password" class="form-control" name="password" id="password">
       <button class="blue-button button" type="submit" class="btn btn-info">Save</button>
     </div>
   </form>
