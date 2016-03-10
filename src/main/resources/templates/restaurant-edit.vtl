@@ -1,6 +1,22 @@
 restaurant-edit.vtl
 - Logged in as: $currentUser.getUserName()
 
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
+
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li>Logged in as: $currentUser.getUserName()</li>
+    <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
+    <li><a href="/$currentUser.getId()/add-restaurant">add restaurant</a></li>
+    <li><a href='/'>Log Out</a></li>
+  </ul>
+</div>
 
 <h1>Edit $restaurant.getRestaurantName():</h1>
 

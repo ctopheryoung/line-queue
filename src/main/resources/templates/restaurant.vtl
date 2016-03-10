@@ -1,21 +1,40 @@
 restaurant.vtl
 - Logged in as: $currentUser.getUserName()
 
-<h1>$restaurant.getRestaurantName()</h1>
-PUT IN RESTAURANT INFO HERE
-#if($restaurant.getUsers())
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
+
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li>Logged in as: $currentUser.getUserName()</li>
+    <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
+    <li><a href="/$currentUser.getId()/add-restaurant">add restaurant</a></li>
+    <li><a href='/'>Log Out</a></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+  <h1>$restaurant.getRestaurantName()</h1>
+  PUT IN RESTAURANT INFO HERE
+  #if($restaurant.getUsers())
   <p>Recent line reports: (WILL EVENTUALLY HAVE USER, LINE LENGTH, AND TIMESTAMP?)</p>
   <ul>
     #foreach($user in $restaurant.getUsers())
-      <li><a href="/users/$user.getId()">$user.getUserName()</a></li>
+    <li><a href="/users/$user.getId()">$user.getUserName()</a></li>
     #end
   </ul>
-#end
+  #end
 
-<p><a href="/$currentUser.getId()/restaurants/$restaurant.getId()/edit">Edit Restaurant</a></p>
+  <p><a href="/$currentUser.getId()/restaurants/$restaurant.getId()/edit">Edit Restaurant</a></p>
 
-<form action="/$currentUser.getId()/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button type="submit">Delete Restaurant</button></form>
+  <form action="/$currentUser.getId()/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button type="submit">Delete Restaurant</button></form>
 
-<p><a href="/$currentUser.getId()/home"Home</a></p>
+  <p><a href="/$currentUser.getId()/home"Home</a></p>
 
-<iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="400" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="400" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>

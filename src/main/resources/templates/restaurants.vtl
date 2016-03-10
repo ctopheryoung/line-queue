@@ -1,35 +1,56 @@
 restaurants.vtl
  - Logged in as: $currentUser.getUserName()
 
-<h1>Restaurants</h1>
-<h3>Click a restaurant to see details and recently reported line lengths.</h3>
+ <div class="logo">
+   <h1>Q</h1>
+   <div class="circle1 circle"></div>
+   <div class="circle2 circle"></div>
+   <div class="circle3 circle"></div>
+ </div>
 
-#foreach ($restaurant in $restaurants)
-<li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
-#end
+ <div class="navbar">
+   <i class="fa fa-bars"></i>
+   <ul class="main-menu">
+     <li>Logged in as: $currentUser.getUserName()</li>
+     <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
+     <li><a href="/$currentUser.getId()/add-restaurant">add restaurant</a></li>
+     <li><a href='/'>Log Out</a></li>
+   </ul>
+ </div>
 
-<h3>Add a Restaurant:</h3>
-<form action="/$currentUser.getId()/restaurants" method="post">
-  <label for="restaurant_name">Restaurant Name:</label>
-  <input id="restaurant_name" name="restaurant_name" type="text" required>
+<div class="wrapper">
+  
+  <h1>Restaurants</h1>
+  <h3>Click a restaurant to see details and recently reported line lengths.</h3>
 
-  <label for="phone">Phone Number:</label>
-  <input id="phone" name="phone" type="text" required>
+  #foreach ($restaurant in $restaurants)
+  <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()">$restaurant.getRestaurantName()</a></li>
+  #end
 
-  <div class="form-group">
-    <label for="street">Street Address:</label>
-    <input id="street" name="street" type="text" required>
+  <h3>Add a Restaurant:</h3>
+  <form action="/$currentUser.getId()/restaurants" method="post">
+    <label for="restaurant_name">Restaurant Name:</label>
+    <input id="restaurant_name" name="restaurant_name" type="text" required>
 
-    <label for="city">City:</label>
-    <input id="city" name="city" type="text" required>
+    <label for="phone">Phone Number:</label>
+    <input id="phone" name="phone" type="text" required>
 
-    <label for="state">State:</label>
-    <input id="state" name="state" type="text" required>
+    <div class="form-group">
+      <label for="street">Street Address:</label>
+      <input id="street" name="street" type="text" required>
 
-    <label for="zip">Zip:</label>
-    <input id="zip" name="zip" type="text" required>
-  </div>
-  <button type="submit">Add Restaurant</button>
-</form>
+      <label for="city">City:</label>
+      <input id="city" name="city" type="text" required>
 
-<p><a href="/$currentUser.getId()/home">Home</a></p>
+      <label for="state">State:</label>
+      <input id="state" name="state" type="text" required>
+
+      <label for="zip">Zip:</label>
+      <input id="zip" name="zip" type="text" required>
+    </div>
+    <button type="submit">Add Restaurant</button>
+  </form>
+
+  <p><a href="/$currentUser.getId()/home">Home</a></p>
+
+</div>
