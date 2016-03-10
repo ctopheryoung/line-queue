@@ -61,10 +61,27 @@ body::-webkit-scrollbar {
 a {
   text-decoration: none; }
 
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center; }
+  .wrapper i {
+    font-size: 25px;
+    transition: all 300ms; }
+    .wrapper i:hover {
+      cursor: pointer;
+      color: #b0284c; }
+  .wrapper .fa-plus {
+    font-size: 15px; }
+
+.fa-chevron-up {
+  display: none; }
+
 .button1, .button2, .button3 {
   width: 60%;
   background: none;
-  transition: all 300ms; }
+  transition: all 300ms;
+  color: #f4f4f4; }
   .button1 a, .button2 a, .button3 a {
     color: #f4f4f4; }
 
@@ -78,7 +95,7 @@ a {
   text-shadow: 1px 1px #212121;
   letter-spacing: 1px; }
 
-.main-form .info-form input, .main-form .info-form button {
+.main-form .info-form input, .main-form .info-form button, .dropdown-field {
   border: none;
   padding: 10px;
   margin: 5px;
@@ -116,6 +133,22 @@ a {
     .navbar i:hover {
       cursor: pointer;
       color: #b0284c; }
+
+.title {
+  text-align: center;
+  font-family: 'Lobster Two', cursive;
+  font-size: 2em;
+  margin: 10px; }
+
+.title-secondary {
+  font-size: 1.5em;
+  font-family: 'Lobster Two', cursive;
+  margin-top: 1em; }
+
+.sub-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px; }
 
 .logo {
   display: flex;
@@ -210,7 +243,9 @@ a {
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  margin-top: 4em; }
+  margin-top: 2.5em; }
+  .login-form label {
+    padding: 20px; }
   .login-form .login-field {
     background: rgba(176, 40, 76, 0.5);
     transition: all 300ms; }
@@ -231,39 +266,6 @@ a {
       letter-spacing: 2px;
       background: rgba(65, 135, 180, 0.7); }
 
-.hero {
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-  background-image: url("../img/cafe.jpg");
-  background-size: cover; }
-
-.wrapper {
-  width: 80%;
-  margin: 0 auto;
-  text-align: center; }
-  .wrapper i {
-    font-size: 25px;
-    transition: all 300ms; }
-    .wrapper i:hover {
-      cursor: pointer;
-      color: #b0284c; }
-  .wrapper .fa-plus {
-    font-size: 15px; }
-
-.title {
-  text-align: center;
-  font-family: 'Lobster Two', cursive;
-  font-size: 2em;
-  margin: 10px; }
-
-.sub-title {
-  font-size: 18px;
-  font-weight: bold; }
-
-.fa-chevron-up {
-  display: none; }
-
 .main-form {
   display: none; }
   .main-form .info-form {
@@ -283,6 +285,25 @@ a {
       width: 50%;
       background: rgba(176, 40, 76, 0.5); }
 
+.box-cheese {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 60%;
+  background: rgba(176, 40, 76, 0.5); }
+
+.dropdown-field {
+  background: none;
+  border-radius: 0px; }
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-image: url("../img/cafe.jpg");
+  background-size: cover; }
+
 .main-list {
   margin: 2em; }
   .main-list li {
@@ -294,15 +315,5 @@ a {
       background: rgba(143, 72, 168, 0.5); }
     .main-list li a {
       color: #f4f4f4; }
-
-.user-pic {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%; }
-
-.title-secondary {
-  font-size: 1.5em;
-  font-family: 'Lobster Two', cursive;
-  margin-top: 1em; }
 
 /*# sourceMappingURL=main.css.map */

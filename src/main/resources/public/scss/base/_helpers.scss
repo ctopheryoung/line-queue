@@ -1,6 +1,22 @@
-// .container{
-//   width: 75%;
-//   display: flex;
-//   flex-flow: column wrap;
-//   align-items: flex-start;
-// }
+//Need to move icons to their own component modules...
+
+.wrapper{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  i{
+    font-size: 25px;
+    transition: all 300ms;
+    &:hover{
+      cursor: pointer;
+      color: $maroon;
+    }
+  }
+  .fa-plus{
+    font-size: 15px;
+  }
+}
+
+.fa-chevron-up{
+  display: none;
+}

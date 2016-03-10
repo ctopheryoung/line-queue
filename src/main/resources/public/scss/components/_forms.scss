@@ -1,9 +1,15 @@
+//Login Styles
+
 .login-form{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  margin-top: 4em;
+  margin-top: 2.5em;
+
+  label{
+    padding: 20px;
+  }
 
   .login-field{
     @extend %login-sizing;
@@ -33,4 +39,48 @@
       background: rgba($blue, 0.7);
     }
   }
+}
+
+//Add Restaurant/User Styles
+
+.main-form{
+  display: none;
+  .info-form{
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    align-items: center;
+    margin-top: 0.5em;
+    label{
+      letter-spacing: 1px;
+      font-size: 12px;
+      margin: 5px;
+    }
+    input{
+      @extend %form-sizing;
+      width: 80%;
+      background: rgba($lavender, 0.5);
+    }
+    button{
+      @extend %form-sizing;
+      width: 50%;
+      background: rgba($maroon, 0.5);
+    }
+  }
+}
+
+//Dropdown Styles
+
+.box-cheese{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:30px;
+  width: 60%;
+  background: rgba($maroon, 0.5);
+}
+.dropdown-field{
+  @extend %form-sizing;
+  background: none;
+  border-radius: 0px;
 }

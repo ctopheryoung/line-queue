@@ -10,7 +10,7 @@ user.vtl
 <div class="navbar">
   <i class="fa fa-bars"></i>
   <ul class="main-menu">
-    <li><a href="#">sign up</a></li>
+    <li><a href='/new-user'>sign up</a></li>
     <li><a href="#">restaurants</a></li>
     <li><a href="#">users</a></li>
   </ul>
@@ -19,23 +19,25 @@ user.vtl
   #if($password.equals($currentUser.getPassword()))
   <h1 class="title">Welcome, $currentUser.getUserName().</h1>
 
-  <h4><button type="button" class="button2 button"="button"><a href="/restaurants">Check line lengths</a></button></h4>
+  <button type="button" class="button2 button"="button"><a href="/restaurants">Check line lengths</a></button>
 
-  <h4>Report a line</h4>
-  <form action='/add-restaurant' method='post'>
+  <h2 class="sub-title">Report a line</h2>
+  <form class="login-form" action='/add-restaurant' method='post'>
     <input id="user_id" name="user_id" type="hidden" value="$currentUser.getId()">
     <label for="restaurant_id">Select a restaurant</label>
-    <select id='restaurant_id' name='restaurant_id' type='text'>
-      #foreach($restaurant in $allRestaurants)
-      <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
-      #end
-    </select>
+    <div class="box-cheese">
+      <select class="dropdown-field" id='restaurant_id' name='restaurant_id' type='text'>
+        #foreach($restaurant in $allRestaurants)
+        <option value="$restaurant.getId()">$restaurant.getRestaurantName()</option>
+        #end
+      </select>
+    </div>
     <label for="line_length">Line length (estimate number of people)</label>
-    <input id="line_length" name="line_length" type="text" required>
-    <button type='submit'>Report</button>
+    <input class="password-field" id="line_length" name="line_length" type="text" required>
+    <button class="button3 button" type='submit'>Report</button>
   </form>
 
-  <p>Don't see the restaurant you are looking for? <a href="/add-restaurant">Add it now.</a></p>
+  <p>Don't see the restaurant you are looking for? <a href="/add-restaurant">Add it now. </a></p>
 
   #if($currentUser.getRestaurants())
   <p>Lines you have reported:</p>
@@ -46,7 +48,6 @@ user.vtl
   </ul>
   #end
   <p><a href="/users/$currentUser.getId()/edit">Edit My Profile</a></p>
-  <p><a href='/'>Home</a></p>
   #end
 
   #if(!$password.equals($currentUser.getPassword()))
