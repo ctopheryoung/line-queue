@@ -11,7 +11,7 @@ restaurant.vtl
 <div class="navbar">
   <i class="fa fa-bars"></i>
   <ul class="main-menu">
-    <li><a href="/$currentUser.getId()/home">Logged in as: $currentUser.getUserName()</a></li>
+    <li><a href="/$currentUser.getId()/home">$currentUser.getUserName()</a></li>
     <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
     <li><a href="/$currentUser.getId()/add-restaurant">Add Restaurant</a></li>
     <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()/edit">Edit Restaurant</a></li>
@@ -38,15 +38,16 @@ restaurant.vtl
   #end
 
   #if(!$restaurant.getPhoto())
-  <button class='lavender-button button' type="button"><a href="/$currentUser.getId()/restaurants/$restaurant.getId()/add-photo">Add A Photo</a></button>  
+  <button class='lavender-button button' type="button"><a href="/$currentUser.getId()/restaurants/$restaurant.getId()/add-photo">Add A Photo</a></button>
   #end
-
-
-  <iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="400" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
 
   #if($restaurant.getPhoto())
-  <img src="$restaurant.getPhoto()">
+  <div class="restaurant-image">
+    <img src="$restaurant.getPhoto()">
+  </div>
   #end
+
+  <iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="400" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
 
   <form action="/$currentUser.getId()/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button class="maroon-button button" type="submit">Delete Restaurant</button></form>
 </div>

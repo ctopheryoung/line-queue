@@ -175,7 +175,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/:userId/restaurants/:id/add-photo", (request, response) -> {
+    post("/:userId/restaurants/:id/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int userId = Integer.parseInt(request.params("userId"));
+      int restaurantId = Integer.parseInt(request.params("id"));
+      Restaurant restaurant = Restaurant.find(restaurantId);
+      restaurant.delete();
+      response.redirect("/" + userId + "/restaurants");
+      return null;
+    });
+
+  get("/:userId/restaurants/:id/add-photo", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int restaurantId = Integer.parseInt(request.params("id"));
       int userId = Integer.parseInt(request.params("userId"));

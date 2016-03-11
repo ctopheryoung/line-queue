@@ -16,6 +16,7 @@
 .maroon-button{
   @extend %button;
   &:hover{
+    cursor: pointer;
     letter-spacing: 2px;
     background: $maroon;
     color: $white;
@@ -25,6 +26,7 @@
 .lavender-button{
   @extend %button;
   &:hover{
+    cursor: pointer;
     letter-spacing: 2px;
     background: $lavender;
     color: $white;
@@ -34,6 +36,7 @@
 .blue-button{
   @extend %button;
   &:hover{
+    cursor: pointer;
     letter-spacing: 2px;
     background: $blue;
     color: $white;
@@ -46,6 +49,7 @@
   background: rgba($blue, 0.5);
   transition: all 300ms;
   &:hover{
+    cursor: pointer;
     letter-spacing: 2px;
     background: rgba($blue, 0.7);
   }
