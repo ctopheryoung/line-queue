@@ -151,16 +151,6 @@ public class App {
       return null;
     });
 
-    // post("/add-user", (request, response) -> {
-    //   int userId = Integer.parseInt(request.queryParams("user_id"));
-    //   int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
-    //   User user = User.find(userId);
-    //   Restaurant restaurant = Restaurant.find(restaurantId);
-    //   restaurant.addUser(user);
-    //   response.redirect("/restaurants/" + restaurantId);
-    //   return null;
-    // });
-
     get("/:userId/restaurants/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
@@ -175,16 +165,47 @@ public class App {
 
     get("/:userId/restaurants/:id/edit", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      int id = Integer.parseInt(request.params("id"));
-      Restaurant restaurant = Restaurant.find(id);
+      int restaurantId = Integer.parseInt(request.params("id"));
+      int userId = Integer.parseInt(request.params("userId"));
+      Restaurant restaurant = Restaurant.find(restaurantId);
+      User currentUser = User.find(userId);
+      model.put("currentUser", currentUser);
       model.put("restaurant", restaurant);
       model.put("template", "templates/restaurant-edit.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("restaurants/:id", (request, response) -> {
+    get("/:userId/restaurants/:id/add-photo", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
+      int restaurantId = Integer.parseInt(request.params("id"));
+      int userId = Integer.parseInt(request.params("userId"));
+      Restaurant restaurant = Restaurant.find(restaurantId);
+      User currentUser = User.find(userId);
+      model.put("currentUser", currentUser);
+      model.put("restaurant", restaurant);
+      model.put("template", "templates/add-photo-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/:userId/restaurants/:id/add-photo", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int restaurantId = Integer.parseInt(request.params("id"));
+      int userId = Integer.parseInt(request.params("userId"));
+      String photo = request.queryParams("photo_url");
+      Restaurant restaurant = Restaurant.find(restaurantId);
+      User currentUser = User.find(userId);
+      restaurant.updatePhoto(photo);
+      model.put("currentUser", currentUser);
+      model.put("restaurant", restaurant);
+      response.redirect("/" + userId + "/restaurants/" + restaurantId);
+      return null;
+    });
+
+    post("/:userId/restaurants/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int userId = Integer.parseInt(request.params("userId"));
       int id = Integer.parseInt(request.params("id"));
+      User currentUser = User.find(userId);
       Restaurant restaurant = Restaurant.find(id);
       String restaurant_name = request.queryParams("restaurant_name");
       String phone = request.queryParams("phone");
@@ -193,7 +214,7 @@ public class App {
       String state = request.queryParams("state");
       String zip = request.queryParams("zip");
       restaurant.update(restaurant_name, phone, street, city, state, zip);
-      response.redirect("/restaurants/" + id);
+      response.redirect("/" + userId + "/restaurants/" + id);
       return null;
     });
   }

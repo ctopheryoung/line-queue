@@ -1,0 +1,28 @@
+add-photo-form.vtl
+
+<div class="logo">
+  <h1>Q</h1>
+  <div class="circle1 circle"></div>
+  <div class="circle2 circle"></div>
+  <div class="circle3 circle"></div>
+</div>
+
+<div class="navbar">
+  <i class="fa fa-bars"></i>
+  <ul class="main-menu">
+    <li><a href="/$currentUser.getId()/home">Logged in as: $currentUser.getUserName()</a></li>
+    <li><a href="/users/$currentUser.getId()/edit">Edit Profile</a></li>
+    <li><a href="/$currentUser.getId()/add-restaurant">Add Restaurant</a></li>
+    <li><a href="/$currentUser.getId()/restaurants/$restaurant.getId()/edit">Edit Restaurant</a></li>
+    <li><a href='/'>Log Out</a></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+  <h1 class="title">Add A Photo</h1>
+  <form class="main-form" action="/$currentUser.getId()/restaurants/$restaurant.getId()/add-photo" method="post">
+    <label for="photo_url">Photo URL:</label>
+    <input id="photo_url" name="photo_url" type="text">
+    <button class="sign-in-button" type="submit">Save</button>
+  </form>
+</div>
