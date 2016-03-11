@@ -54,9 +54,13 @@ restaurant.vtl
 
 <p><a href="/$currentUser.getId()/home">Home</a></p>
 
+<div class="restaurant-image">
+  <img src="$restaurant.getPhoto()">
+</div>
+
 <iframe src="https://www.google.com/maps?q=$restaurant.getRestaurantName()$restaurant.getStreet()$restaurant.getCity()&output=embed" width="400" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
 
-<img src="$restaurant.getPhoto()">
+
 
   <form action="/$currentUser.getId()/restaurants/$restaurant.getId()/delete" method="post"><input id="restaurant_id" name="restaurant_id" type="hidden" value="$restaurant.getId()"><button class="maroon-button button" type="submit">Delete Restaurant</button></form>
 </div>

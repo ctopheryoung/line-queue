@@ -317,6 +317,9 @@ a {
   background-image: url("../img/cafe.jpg");
   background-size: cover; }
 
+.restaurant-image img {
+  width: 400px; }
+
 .main-list {
   margin: 2em; }
   .main-list li {
