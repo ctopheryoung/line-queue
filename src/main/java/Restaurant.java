@@ -109,6 +109,10 @@ public class Restaurant {
     }
   }
 
+    // public void reportLineLength() {
+    //   String sql = "INSERT INTO check_ins (line_length) VALUES "
+    // }
+
 //READ
 
   public static Restaurant find(int id) {
@@ -147,6 +151,8 @@ public class Restaurant {
       .executeUpdate();
     }
   }
+
+
 //DESTROY
 
   public void delete() {
@@ -168,18 +174,15 @@ public class Restaurant {
 
 
 //ADD
-  public void addUser(User user) {
-      String sql = "INSERT INTO check_ins (restaurant_id, user_id) VALUES (:restaurant_id, :user_id)";
+  public void reportLineLength(int userId, int lineLength) {
+      String sql = "INSERT INTO check_ins (restaurant_id, user_id, line_length) VALUES (:restaurant_id, :user_id, :line_length)";
       try(Connection con = DB.sql2o.open()) {
         con.createQuery(sql)
           .addParameter("restaurant_id", id)
-          .addParameter("user_id", user.getId())
-          // .addParameter("check_in", check_in) //SHOULD THIS BE "user.getCheckIn"?
-          // .addParameter("in_line", in_line) //SHOULD THIS BE "user.getInLine"?
+          .addParameter("user_id", userId)
+          .addParameter("line_length", lineLength)
           .executeUpdate();
       }
-      //INSERT INTO , check_in, in_line
-      //VALUES , :check_in, :in_line
   }
 
 
@@ -196,20 +199,22 @@ public class Restaurant {
     }
   }
 
-  public Integer getLineLength() {
-    String sql = "SELECT line_length FROM check_ins WHERE id = :id";
+  public Integer getLineLength(int userId) {
+    String sql = "SELECT line_length FROM check_ins WHERE restaurant_id = :restaurant_id AND user_id = :user_id";
     try (Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
-          .addParameter("id", id)
+          .addParameter("restaurant_id", id)
+          .addParameter("user_id", userId)
           .executeScalar(Integer.class);
     }
   }
 
-  public Timestamp getTime() {
-    String sql = "SELECT modified FROM check_ins WHERE id = :id";
+  public Timestamp getTime(int userId) {
+    String sql = "SELECT modified FROM check_ins WHERE restaurant_id = :restaurant_id AND user_id = :user_id";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
-        .addParameter("id", id)
+        .addParameter("restaurant_id", id)
+        .addParameter("user_id", userId)
         .executeScalar(Timestamp.class);
 
 

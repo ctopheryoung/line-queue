@@ -75,13 +75,14 @@ public class App {
       return null;
     });
 
-    post("/add-restaurant", (request, response) -> {
+    post("/report-line", (request, response) -> {
       int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
       int userId = Integer.parseInt(request.queryParams("user_id"));
+      int lineLength = Integer.parseInt(request.queryParams("line_length"));
       Restaurant restaurant = Restaurant.find(restaurantId);
       User user = User.find(userId);
-      user.addRestaurant(restaurant);
-      response.redirect("/users/" + userId);
+      restaurant.reportLineLength(userId, lineLength);
+      response.redirect("/"+userId+"/restaurants/" + restaurantId);
       return null;
     });
 
@@ -150,15 +151,15 @@ public class App {
       return null;
     });
 
-    post("/add-user", (request, response) -> {
-      int userId = Integer.parseInt(request.queryParams("user_id"));
-      int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
-      User user = User.find(userId);
-      Restaurant restaurant = Restaurant.find(restaurantId);
-      restaurant.addUser(user);
-      response.redirect("/restaurants/" + restaurantId);
-      return null;
-    });
+    // post("/add-user", (request, response) -> {
+    //   int userId = Integer.parseInt(request.queryParams("user_id"));
+    //   int restaurantId = Integer.parseInt(request.queryParams("restaurant_id"));
+    //   User user = User.find(userId);
+    //   Restaurant restaurant = Restaurant.find(restaurantId);
+    //   restaurant.addUser(user);
+    //   response.redirect("/restaurants/" + restaurantId);
+    //   return null;
+    // });
 
     get("/:userId/restaurants/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();

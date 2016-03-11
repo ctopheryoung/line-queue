@@ -35,13 +35,12 @@ restaurant.vtl
   PUT IN RESTAURANT INFO HERE
   #if($restaurant.getUsers())
 
-  <p>Recent line reports: (WILL EVENTUALLY HAVE USER, LINE LENGTH, AND TIMESTAMP?)</p>
+  <p>Recent line reports:</p>
   <ul class="main-list">
     #foreach($user in $restaurant.getUsers())
-
       <li><a href="/users/$user.getId()">Last Person To Check In: $user.getUserName()</a></li>
-      <li>Current Length of the Line: $restaurant.getLineLength()</li>
-      <li>Last Check In Happened At: $restaurant.getTime()</li>
+      <li>Current Length of the Line: $restaurant.getLineLength($user.getId())</li>
+      <li>Last Check In Happened At: $restaurant.getTime($user.getId())</li>
 
     #end
   </ul>
