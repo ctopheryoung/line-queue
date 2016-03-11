@@ -10,21 +10,17 @@ new-user.vtl
 <div class="navbar">
   <i class="fa fa-bars"></i>
   <ul class="main-menu">
-    <li><a href='/'>Home</a></li>
-    <li><a href='/new-user'>Sign Up</a></li>
-    <li><a href="/add-restaurant">add restaurant</a></li>
-    <li><a href="#">users</a></li>
+    <li><a href='/'>Login</a></li>
   </ul>
 </div>
 
 <div class="wrapper">
   <h1 class="title">Join the Q</h1>
-  <h3>Create an account:</h3>
   <form class="main-form" action="/save-new-user" method="post">
     <label class="reg-label" for="newUserName"> New Username</label>
     <input class="maroon-field" id="newUserName" name="newUserName" type="text" required>
     <label class="reg-label" for="newPassword">New Password</label>
     <input class="lavender-field" id="newPassword" name="newPassword" type="password" required>
-    <button class="sign-in-button" type="submit">Create Account</button>
+    <button class="blue-button button" type="submit"><i class="fa fa-plus"></i></button>
   </form>
 </div>
