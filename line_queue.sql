@@ -203,6 +203,8 @@ COPY check_ins (id, restaurant_id, user_id, line_length, modified) FROM stdin;
 5	1	4	11	2016-03-10 16:23:47.786406
 6	1	4	9	2016-03-10 17:00:45.401117
 7	1	4	15	2016-03-10 17:13:37.978377
+8	3	1	1	2016-03-11 08:15:42.532201
+9	4	1	1	2016-03-11 08:27:45.804899
 \.
 
 
@@ -210,7 +212,7 @@ COPY check_ins (id, restaurant_id, user_id, line_length, modified) FROM stdin;
 -- Name: check_ins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('check_ins_id_seq', 7, true);
+SELECT pg_catalog.setval('check_ins_id_seq', 9, true);
 
 
 --
@@ -218,11 +220,11 @@ SELECT pg_catalog.setval('check_ins_id_seq', 7, true);
 --
 
 COPY restaurants (id, restaurant_name, phone, street, city, state, zip, line_average, photo) FROM stdin;
-2	restaurant	1111111111	11 street	portland	or	97204	3	\N
-3	Food	2222222	Main St.	Portland	OR	97201	\N	\N
-4	The Roxy	1111111111	SE Stark	Portland	Oregon	97201	\N	\N
-5	Tugboat	111111111111	SW Broadway	Portland	OR	97205	\N	\N
-1	Original Hotcake House	1111111111	SE Powell Blvd	Portland	OR	97204	3	http://www.mikepolk.com/wp-content/uploads/2014/05/hotcake.jpg
+5	Tugboat	(503) 226-2508	711 SW Ankeny St.	Portland	OR	97205	\N	http://guideimg.alibaba.com/images/trip/1/03/18/4/tugboat-brewing-company_173294.jpg
+8	Urban Farmer	(503) 222-4900	525 SW Morrison St.	Portland	OR	97204	\N	\N
+9	Shigezo	(503) 688-5202	910 SW Salmon St.	Portland	OR	97205	\N	\N
+10	Goose Hollow Inn	(503) 228-7010	1927 SW Jefferson St. 	Portland	OR	97201	\N	\N
+11	¿Por Que No?	(503) 954-3138	4635 SE Hawthorne Blvd.	Portland	OR	97215	\N	\N
 \.
 
 
@@ -230,7 +232,7 @@ COPY restaurants (id, restaurant_name, phone, street, city, state, zip, line_ave
 -- Name: restaurants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('restaurants_id_seq', 6, true);
+SELECT pg_catalog.setval('restaurants_id_seq', 11, true);
 
 
 --
