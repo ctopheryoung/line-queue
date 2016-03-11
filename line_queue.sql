@@ -205,6 +205,8 @@ COPY check_ins (id, restaurant_id, user_id, line_length, modified) FROM stdin;
 7	1	4	15	2016-03-10 17:13:37.978377
 8	3	1	1	2016-03-11 08:15:42.532201
 9	4	1	1	2016-03-11 08:27:45.804899
+10	10	1	4	2016-03-11 08:47:03.206709
+11	16	1	13	2016-03-11 09:51:15.302101
 \.
 
 
@@ -212,7 +214,7 @@ COPY check_ins (id, restaurant_id, user_id, line_length, modified) FROM stdin;
 -- Name: check_ins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('check_ins_id_seq', 9, true);
+SELECT pg_catalog.setval('check_ins_id_seq', 11, true);
 
 
 --
@@ -221,10 +223,15 @@ SELECT pg_catalog.setval('check_ins_id_seq', 9, true);
 
 COPY restaurants (id, restaurant_name, phone, street, city, state, zip, line_average, photo) FROM stdin;
 5	Tugboat	(503) 226-2508	711 SW Ankeny St.	Portland	OR	97205	\N	http://guideimg.alibaba.com/images/trip/1/03/18/4/tugboat-brewing-company_173294.jpg
-8	Urban Farmer	(503) 222-4900	525 SW Morrison St.	Portland	OR	97204	\N	\N
-9	Shigezo	(503) 688-5202	910 SW Salmon St.	Portland	OR	97205	\N	\N
-10	Goose Hollow Inn	(503) 228-7010	1927 SW Jefferson St. 	Portland	OR	97201	\N	\N
-11	¿Por Que No?	(503) 954-3138	4635 SE Hawthorne Blvd.	Portland	OR	97215	\N	\N
+12	Yamhill Pub	(503) 295-6613	223 SW Yamhill St.	Portland	OR	97204	\N	\N
+10	Goose Hollow Inn	(503) 228-7010	1927 SW Jefferson St. 	Portland	OR	97201	\N	http://media1.fdncms.com/portmerc/imager/goose-hollow-inn/u/original/842510/goose_hollow_inn.jpg
+9	Shigezo	(503) 688-5202	910 SW Salmon St.	Portland	OR	97205	\N	http://assets3.thrillist.com/v1/image/1471568/size/tl-horizontal_main/shigezo-izakaya
+11	¿Por Que No?	(503) 954-3138	4635 SE Hawthorne Blvd.	Portland	OR	97215	\N	http://www.bringfido.com/site_media/images/thumbs/por_que-portland.jpg
+15	Taste Tickler	(503) 282-3681	1704 NE 14th Ave.	Portland	OR	97212	\N	http://2.bp.blogspot.com/-Wa9ceicbuIk/UAhKAtMVwhI/AAAAAAAABc8/pp75KXUi--Q/s1600/DSC_0615_2.JPG
+8	Urban Farmer	(503) 222-4900	525 SW Morrison St.	Portland	OR	97204	\N	https://lh4.googleusercontent.com/-5q_d17ukBKQ/T4w93ECJ1YI/AAAAAAAAAIE/YzGfCXdSEr0/s0/The%2BNines%2B-%2BURBAN%2BFARMER%2B1.jpg
+13	Smokehouse 21	(971) 373-8990	413 NW 21st Ave.	Portland	OR	97209	\N	http://www.neighborhoodnotes.com/uploads/images/2014-10-21-smokehouse-21-happy-hour-011_2_3-photo.jpg
+14	Broadway Grill & Brewery	(503) 284 4460	1700 NE Broadway St.	Portland	OR	97232	\N	http://2.bp.blogspot.com/-Z7FAd8PJ5fM/T3iampKd_3I/AAAAAAAAB6U/NX_84FuIy9M/s1600/brdwy%2Bpbr.JPG
+16	Little Big Burger (NE)	(503) 265-8781	3747 N Mississippi Ave	Portland	OR	97227	\N	https://cdn0.vox-cdn.com/thumbor/1DL9ZXP2Pcy54Pbgb1_IIDU1kC0=/0x50:1000x613/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/38790598/little-big-burger-ext-division.0.jpg
 \.
 
 
@@ -232,7 +239,7 @@ COPY restaurants (id, restaurant_name, phone, street, city, state, zip, line_ave
 -- Name: restaurants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('restaurants_id_seq', 11, true);
+SELECT pg_catalog.setval('restaurants_id_seq', 18, true);
 
 
 --
