@@ -33,17 +33,26 @@ restaurant.vtl
 <div class="wrapper">
   <h1 class="title">$restaurant.getRestaurantName()</h1>
   PUT IN RESTAURANT INFO HERE
-  #if($restaurant.getUsers())
 
-  <p>Recent line reports:</p>
+  #if($restaurant.getUsers())
+  <ul class="main-list">
+    #foreach($checkIn in $restaurant.getCheckIns())
+    <hr>
+    <p>Check In</p>
+    <li>Reported by: $checkIn.getUserName()</li>
+    <li>Length of the Line: $checkIn.getLineLength()</li>
+    <li>Time: $checkIn.getModified()</li>
+    #end
+  </ul>
+
+  <!-- <p>Recent line reports:</p>
   <ul class="main-list">
     #foreach($user in $restaurant.getUsers())
       <li><a href="/users/$user.getId()">Last Person To Check In: $user.getUserName()</a></li>
       <li>Current Length of the Line: $restaurant.getLineLength($user.getId())</li>
       <li>Last Check In Happened At: $restaurant.getTime($user.getId())</li>
-
     #end
-  </ul>
+  </ul> -->
   #end
 
 

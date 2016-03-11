@@ -184,7 +184,14 @@ public class Restaurant {
           .executeUpdate();
       }
   }
-
+  public List<CheckIn> getCheckIns() {
+    String sql = "SELECT * FROM check_ins WHERE restaurant_id = :restaurant_id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("restaurant_id", id)
+        .executeAndFetch(CheckIn.class);
+    }
+  }
 
 //ADVANCED GETTERS
   public List<User> getUsers() {
