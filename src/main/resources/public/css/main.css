@@ -63,6 +63,7 @@ a {
   text-decoration: none; }
 
 .wrapper {
+  max-width: 600px;
   width: 80%;
   margin: 0 auto;
   text-align: center; }
@@ -131,7 +132,8 @@ a {
   text-align: center;
   font-family: 'Lobster Two', cursive;
   font-size: 2em;
-  margin: 1.5em; }
+  margin: 1.5em;
+  text-shadow: 2px 2px #212121; }
 
 .title-secondary {
   font-size: 1.5em;
@@ -320,7 +322,8 @@ a {
   width: 100vw;
   position: relative;
   background-image: url("../img/cafe.jpg");
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
 
 .main-list {
   margin: 2em; }
