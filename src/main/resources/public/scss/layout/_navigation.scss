@@ -5,11 +5,11 @@
   position: absolute;
   .main-menu{
     @include position($top: 2em, $right: -0.5em);
-    padding: 10px 15px;
+    width: 40vw;
     background: rgba($black, 0.8);
     display: none;
     li{
-      padding: 10px;
+      padding: 1em 1.5em;
       font-family: sans-serif;
       letter-spacing: 1px;
       a{

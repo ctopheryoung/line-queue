@@ -1,6 +1,7 @@
 //Need to move icons to their own component modules...
 
 .wrapper{
+  max-width: 600px;
   width: 80%;
   margin: 0 auto;
   text-align: center;
@@ -9,7 +10,7 @@
     transition: all 300ms;
     &:hover{
       cursor: pointer;
-      color: $maroon;
+      color: $lavender;
     }
   }
   .fa-plus{
