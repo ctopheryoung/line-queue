@@ -182,6 +182,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/:userId/restaurants/:id/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int userId = Integer.parseInt(request.params("userId"));
+      int restaurantId = Integer.parseInt(request.params("id"));
+      Restaurant restaurant = Restaurant.find(restaurantId);
+      restaurant.delete();
+      response.redirect("/" + userId + "/restaurants");
+      return null;
+    });
+
     post("restaurants/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
