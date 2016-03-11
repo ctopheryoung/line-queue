@@ -2,12 +2,6 @@ restaurant.vtl
 - Logged in as: $currentUser.getUserName()
 
 
-<h1>$restaurant.getRestaurantName()</h1>
-<h1>$restaurant.getPhone()</h1>
-<h1>$restaurant.getStreet()</h1>
-<h1>$restaurant.getCity()</h1>
-<h1>$restaurant.getState()</h1>
-<h1>$restaurant.getZip()</h1>
 
 
 
@@ -31,14 +25,16 @@ restaurant.vtl
 </div>
 
 <div class="wrapper">
-  <h1 class="title">$restaurant.getRestaurantName()</h1>
-  PUT IN RESTAURANT INFO HERE
+  <p class="title">$restaurant.getRestaurantName()</p>
+  <p>Phone: $restaurant.getPhone()</p>
+  <p>Address: $restaurant.getStreet(), $restaurant.getCity(), $restaurant.getState() $restaurant.getZip()</p>
+
+  <h3 class="title">Line Reports:</h3>
 
   #if($restaurant.getUsers())
   <ul class="main-list">
     #foreach($checkIn in $restaurant.getCheckIns())
     <hr>
-    <p>Check In</p>
     <li>Reported by: $checkIn.getUserName()</li>
     <li>Length of the Line: $checkIn.getLineLength()</li>
     <li>Time: $checkIn.getModified()</li>
