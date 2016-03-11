@@ -10,14 +10,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -62,14 +62,13 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: check_ins; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: check_ins; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE check_ins (
     id integer NOT NULL,
     restaurant_id integer,
     user_id integer,
-    in_line boolean,
     line_length integer,
     modified timestamp without time zone
 );
@@ -99,7 +98,7 @@ ALTER SEQUENCE check_ins_id_seq OWNED BY check_ins.id;
 
 
 --
--- Name: restaurants; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: restaurants; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE restaurants (
@@ -139,14 +138,13 @@ ALTER SEQUENCE restaurants_id_seq OWNED BY restaurants.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE users (
     id integer NOT NULL,
     user_name character varying,
     score integer,
-
     password character varying
 );
 
@@ -199,9 +197,12 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: check_ins; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-
-COPY check_ins (id, restaurant_id, user_id, check_in, in_line, line_length) FROM stdin;
-
+COPY check_ins (id, restaurant_id, user_id, line_length, modified) FROM stdin;
+3	1	5	7	2016-03-10 16:08:53.851149
+4	1	4	14	2016-03-10 16:16:09.335471
+5	1	4	11	2016-03-10 16:23:47.786406
+6	1	4	9	2016-03-10 17:00:45.401117
+7	1	4	15	2016-03-10 17:13:37.978377
 \.
 
 
@@ -209,7 +210,7 @@ COPY check_ins (id, restaurant_id, user_id, check_in, in_line, line_length) FROM
 -- Name: check_ins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('check_ins_id_seq', 4, true);
+SELECT pg_catalog.setval('check_ins_id_seq', 7, true);
 
 
 --
@@ -217,8 +218,11 @@ SELECT pg_catalog.setval('check_ins_id_seq', 4, true);
 --
 
 COPY restaurants (id, restaurant_name, phone, street, city, state, zip, line_average, photo) FROM stdin;
-1	restaurant	1111111111	11 street	portland	or	97204	3	\N
 2	restaurant	1111111111	11 street	portland	or	97204	3	\N
+3	Food	2222222	Main St.	Portland	OR	97201	\N	\N
+4	The Roxy	1111111111	SE Stark	Portland	Oregon	97201	\N	\N
+5	Tugboat	111111111111	SW Broadway	Portland	OR	97205	\N	\N
+1	Original Hotcake House	1111111111	SE Powell Blvd	Portland	OR	97204	3	http://www.mikepolk.com/wp-content/uploads/2014/05/hotcake.jpg
 \.
 
 
@@ -226,18 +230,17 @@ COPY restaurants (id, restaurant_name, phone, street, city, state, zip, line_ave
 -- Name: restaurants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('restaurants_id_seq', 2, true);
+SELECT pg_catalog.setval('restaurants_id_seq', 6, true);
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-
 COPY users (id, user_name, score, password) FROM stdin;
 1	test	\N	test
-2	test	\N	test
-
+4	Mister	\N	mister
+5	Duder	\N	duder
 \.
 
 
@@ -245,11 +248,11 @@ COPY users (id, user_name, score, password) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('users_id_seq', 2, true);
+SELECT pg_catalog.setval('users_id_seq', 5, true);
 
 
 --
--- Name: check_ins_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: check_ins_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY check_ins
@@ -257,7 +260,7 @@ ALTER TABLE ONLY check_ins
 
 
 --
--- Name: restaurants_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: restaurants_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY restaurants
@@ -265,7 +268,7 @@ ALTER TABLE ONLY restaurants
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -287,7 +290,6 @@ CREATE TRIGGER update_check_in BEFORE UPDATE ON check_ins FOR EACH ROW EXECUTE P
 
 
 --
-
 -- Name: public; Type: ACL; Schema: -; Owner: epicodus
 --
 
@@ -300,3 +302,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+
