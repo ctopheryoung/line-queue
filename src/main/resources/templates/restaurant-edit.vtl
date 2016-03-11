@@ -19,7 +19,7 @@ restaurant-edit.vtl
 
 <h1 class="title">Edit $restaurant.getRestaurantName()</h1>
 
-<form class="main-form" action="/restaurants/$restaurant.getId()" method="post">
+<form class="main-form" action="/$currentUser.getId()/restaurants/$restaurant.getId()" method="post">
   <div class="info-form">
     <label class="reg-label" for="restaurant_name">Restaurant Name</label>
     <input class="lavender-field" id="restaurant_name" name="restaurant_name" type="text" value="$restaurant.getRestaurantName()" required>
